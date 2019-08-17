@@ -20,10 +20,10 @@ module.exports = function(app) {
     });
   });
 
-  // novice_ex: Send JSON response with user "novice_ex", ordered by date
-app.get("/novice_ex", function(req, res) {
+  // novice_ex: Send JSON response with user, ordered by date
+  app.get("/:user", function(req, res) {
     // Query: In our database, go to the animals collection, then "find" everything
-    db.users.find({name: "novice_ex"}).sort({date: 1}, function(err, data) {
+    db.users.find({name: req.params.user}).sort({date: 1}, function(err, data) {
       // Log any errors if the server encounters one
       if (err) {
         console.log(err);
@@ -34,6 +34,37 @@ app.get("/novice_ex", function(req, res) {
       }
     });
   });
+
+  // Route for retrieving all Users from the db
+  app.get("/user", function(req, res) {
+    // Find all Users
+    db.User.find({})
+      .then(function(dbUser) {
+        // If all Users are successfully found, send them back to the client
+        res.json(dbUser);
+      })
+      .catch(function(err) {
+        // If an error occurs, send the error back to the client
+        res.json(err);
+      });
+  });
+
+  // Route to get a user and populate them with their history
+  app.get("/:user", function(req, res) {
+    // Find the user
+    db.User.find({name: req.params.name})
+      // Specify that we want to populate the retrieved user with associated history
+      .populate("history")
+      .then(function(dbUser) {
+        // If able to successfully find and associate all Users and Notes, send them back to the client
+        res.json(dbUser);
+      })
+      .catch(function(err) {
+        // If an error occurs, send it back to the client
+        res.json(err);
+      });
+  });
+  
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
