@@ -20,6 +20,21 @@ module.exports = function(app) {
     });
   });
 
+  // novice_ex: Send JSON response with user "novice_ex", ordered by date
+app.get("/novice_ex", function(req, res) {
+    // Query: In our database, go to the animals collection, then "find" everything
+    db.users.find({name: "novice_ex"}).sort({date: 1}, function(err, data) {
+      // Log any errors if the server encounters one
+      if (err) {
+        console.log(err);
+      }
+      else {
+        // Otherwise, send the result of this query to the browser
+        res.json(data);
+      }
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
