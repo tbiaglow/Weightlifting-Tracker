@@ -3,11 +3,15 @@ require("dotenv").config();
 var express = require("express");
 var mongojs = require("mongojs");
 var exphbs = require("express-handlebars");
+var logger = require("morgan");
+var mongoose = require("mongoose");
 
 // Initialize Express
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// Use morgan logger for logging requests
+app.use(logger("dev"));
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

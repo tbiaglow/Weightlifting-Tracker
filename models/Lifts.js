@@ -1,17 +1,56 @@
 var mongoose = require("mongoose");
 
-// Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new HistorySchema object
-// This is similar to a Sequelize model
 var LiftsSchema = new Schema({
-    squat: integer,
-    press: integer,
-    deadlift: integer,
-    bench_press: integer,
-    power_clean: integer,
-    power_snatch: integer
+    squat: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Volume model
+          ref: "Volume"
+        }
+    ]
+    press: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Volume model
+          ref: "Volume"
+        }
+    ],
+    deadlift: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Volume model
+          ref: "Volume"
+        }
+    ],
+    bench_press: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Volume model
+          ref: "Volume"
+        }
+    ],
+    power_clean: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Volume model
+          ref: "Volume"
+        }
+    ],
+    power_snatch: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Volume model
+          ref: "Volume"
+        }
+    ]
 })
 
 // This creates our model from the above schema, using mongoose's model method
