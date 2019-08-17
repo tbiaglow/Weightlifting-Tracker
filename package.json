@@ -1,16 +1,30 @@
 {
   "name": "weightlifting_tracker",
   "version": "1.0.0",
-  "description": "MVP: {\r This project will create a site that allows users to track their progress in weightlifting and powerlifting. The site will track daily, weekly, and monthly progress on basic lifts, and recommend a program based on the user's stated goal (strength maintenance, general strength, powerlifting, Olympic lifting) and current rate of progress.\r     What I know how to do:\r         1. Create a database in SQL or Mongo for each user, update each database, add to each database\r         2. Create a database of programs that are associated with different user goals and rates of progress\r     What I need to know how to do:\r         1. Use data to calculate rate of progress and store this as an dynamic object that updates automatically when the user adds to their progress database\r         2. Get functions that calculate 1 rep max for any given number of reps, add that number to the database as a 1RM snapshot value",
+  "description": "MVP: {\r This project will create a site that allows users to track their progress in weightlifting and powerlifting. The site will track daily, weekly, and monthly progress on basic lifts, and recommend a program based on the user's stated goal (strength maintenance, general strength, powerlifting, Olympic lifting) and current rate of progress.\r",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit",
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "mongojs": "^2.6.0"
+    "mongojs": "^2.6.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "express-handlebars": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.1.4",
+    "prettier": "^1.17.1"
   }
 }
