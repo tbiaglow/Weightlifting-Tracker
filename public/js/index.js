@@ -12,7 +12,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
+      url: "api/users",
       data: JSON.stringify(user)
     });
   },
@@ -116,3 +116,6 @@ oneRepMaxArray = liftArray.map(Brzycki);
 // "time" will be a user-specified timeframe that we can use to calculate their average rate of progress, progAvg
 // time could be calculated by getting the current date and subtracting the user's selected start date from it
 let progAvg = (Math.max(oneRepMaxArray) - oneRepMaxArray[0]) / time;
+// Minimum rate of average progression user must maintain in order to be novice or intermediate. Top number is in pounds, bottom number is in days.
+const noviceProgAvgMin = 5 / 4;
+const intermediateProgAvgMin = 2.5 / 14
