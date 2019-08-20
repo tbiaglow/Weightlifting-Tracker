@@ -6,25 +6,25 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveUser: function(user) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/examples",
-      data: JSON.stringify(example)
+      data: JSON.stringify(user)
     });
   },
-  getExamples: function() {
+  getUsers: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/users",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteUser: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/users/" + id,
       type: "DELETE"
     });
   }
@@ -97,3 +97,22 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
+//---------------------------------------------------------------
+// Functions to manipulate lifting data
+//---------------------------------------------------------------
+
+// Functions to calculate 1RM
+const Brzycki = (weight, reps) => {
+  if (reps <= 10) {
+    return weight / (1.0278 - (0.0278 * reps))
+  }
+};
+
+// Calculate user's rate of progress
+let liftArray = [];
+oneRepMaxArray = liftArray.map(Brzycki);
+// "time" will be a user-specified timeframe that we can use to calculate their average rate of progress, progAvg
+// time could be calculated by getting the current date and subtracting the user's selected start date from it
+let progAvg = (Math.max(oneRepMaxArray) - oneRepMaxArray[0]) / time;

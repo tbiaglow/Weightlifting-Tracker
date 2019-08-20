@@ -22,7 +22,7 @@ module.exports = function(app) {
 
   // novice_ex: Send JSON response with user, ordered by date
   app.get("/:user", function(req, res) {
-    // Query: In our database, go to the animals collection, then "find" everything
+    // Query: In our database, go to the users collection, then "find" everything
     db.users.find({name: req.params.user}).sort({date: 1}, function(err, data) {
       // Log any errors if the server encounters one
       if (err) {
@@ -54,9 +54,9 @@ module.exports = function(app) {
     // Find the user
     db.User.find({name: req.params.name})
       // Specify that we want to populate the retrieved user with associated history
-      .populate("history")
+      .populate("History")
       .then(function(dbUser) {
-        // If able to successfully find and associate all Users and Notes, send them back to the client
+        // If able to successfully find and associate all Users and Histories, send them back to the client
         res.json(dbUser);
       })
       .catch(function(err) {
