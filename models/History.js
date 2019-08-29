@@ -6,9 +6,9 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new HistorySchema object
 // This is similar to a Sequelize model
 var HistorySchema = new Schema({
-    year: integer,
-    month: integer,
-    day: integer,
+    year: Number,
+    month: Number,
+    day: Number,
     lifts: [
         {
           // Store ObjectIds in the array

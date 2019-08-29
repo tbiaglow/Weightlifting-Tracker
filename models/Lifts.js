@@ -10,7 +10,7 @@ var LiftsSchema = new Schema({
           // The ObjectIds will refer to the ids in the Volume model
           ref: "Volume"
         }
-    ]
+    ],
     press: [
         {
           // Store ObjectIds in the array

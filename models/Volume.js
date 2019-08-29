@@ -1,9 +1,9 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var VolumeSchema = new Schema({
-    sets: integer,
-    reps: integer,
-    weight: integer
+    sets: Number,
+    reps: Number,
+    weight: Number
 })
 
 var Volume = mongoose.model("Volume", VolumeSchema);
