@@ -1,33 +1,28 @@
 {
-  "name": "weightlifting_tracker",
+  "name": "mern",
   "version": "1.0.0",
-  "description": "MVP: {\r This project will create a site that allows users to track their progress in weightlifting and powerlifting. The site will track daily, weekly, and monthly progress on basic lifts, and recommend a program based on the user's stated goal (strength maintenance, general strength, powerlifting, Olympic lifting) and current rate of progress.\r",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit",
-    "lint": "eslint --quiet .",
-    "fix": "eslint --fix .",
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "mongojs": "^2.6.0",
-    "dotenv": "^8.0.0",
-    "express": "^4.17.0",
-    "express-handlebars": "^3.1.0",
-    "mongoose": "^5.3.16",
-    "morgan": "^1.9.1"
-  },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "mocha": "^6.1.4",
-    "prettier": "^1.17.1"
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.16",
+    "if-env": "^1.0.4"
   }
 }
