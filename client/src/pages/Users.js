@@ -6,17 +6,17 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Books extends Component {
+class Users extends Component {
   state = {
-    Users: []
+    users: []
   };
 
   componentDidMount() {
     this.loadUsers();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadUsers = () => {
+    API.getUsers()
       .then(res => this.setState({ books: res.data }))
       .catch(err => console.log(err));
   };
@@ -67,4 +67,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Users;
