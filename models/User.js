@@ -7,22 +7,22 @@ var Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 var UserSchema = new Schema({
   id: {
-    type: number,
+    type: Number,
     unique: true
   },
       // `name` must be unique and of type String
   name: {
     type: String,
     unique: false
-  },
-  history: [
-    {
-      // Store ObjectIds in the array
-      type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the History model
-      ref: "History"
-    }
-  ]
+  }
+  // history: [
+  //   {
+  //     // Store ObjectIds in the array
+  //     type: Schema.Types.ObjectId,
+  //     // The ObjectIds will refer to the ids in the History model
+  //     ref: "History"
+  //   }
+  // ]
 })
 
 // This creates our model from the above schema, using mongoose's model method
