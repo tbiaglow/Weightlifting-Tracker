@@ -15,14 +15,46 @@ var UserSchema = new Schema({
     type: String,
     unique: false
   },
-  history: [
+  squat: [
     {
       // Store ObjectIds in the array
       type: Schema.Types.ObjectId,
       // The ObjectIds will refer to the ids in the History model
-      ref: "History"
+      ref: "Squat"
     }
-  ]
+  ],
+  deadlift: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the History model
+      ref: "Deadlift"
+    }
+  ],
+  Press: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the History model
+      ref: "Press"
+    }
+  ],
+  Bench_Press: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the History model
+      ref: "Bench_Press"
+    }
+  ],
+  Power_Clean: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the History model
+      ref: "Power_Clean"
+    }
+  ],
 })
 
 // This creates our model from the above schema, using mongoose's model method
