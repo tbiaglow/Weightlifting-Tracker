@@ -14,11 +14,15 @@ class Users extends Component {
 
   componentDidMount() {
     this.loadUsers();
+
   }
 
   loadUsers = () => {
     API.getUsers()
-      .then(res => this.setState({ users: res.data }))
+      .then(res => {
+        this.setState({ users: res.data })
+        console.log(res.data)
+      })
       .catch(err => console.log(err));
   };
 
@@ -54,7 +58,7 @@ class Users extends Component {
                         {user.name}
                       </strong>
                     </Link>
-                    <DeleteBtn />
+                    {/* <DeleteBtn /> */}
                   </ListItem>
                 ))}
               </List>

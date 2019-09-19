@@ -11,29 +11,80 @@ mongoose.connect(
 const noviceSeed = [
   {
     id: 1,
-    name: "novice_ex"
+    name: "novice_ex",
+    history: [{
+      year: 2019,
+      month: 1,
+      day: 1,
+      lifts: [{
+        squat: [{
+          sets: 3,
+          reps: 5,
+          weight: 135
+        }],
+        press: [{
+          sets: 3,
+          reps: 5,
+          weight: 65
+        }],
+        deadlift: [{
+          sets: 1,
+          reps: 5,
+          weight: 135
+        }]
+      }]
+    },
+    {
+      year: 2019,
+      month: 1,
+      day: 3,
+      lifts: [{
+        squat: [{
+          sets: 3,
+          reps: 5,
+          weight: 140
+        }],
+        bench_press: [{
+          sets: 3,
+          reps: 5,
+          weight: 95
+        }],
+        deadlift: [{
+          sets: 1,
+          reps: 5,
+          weight: 145
+        }]
+      }]
+    }]
   }
 ]
-    //   {
-//     id: 1,
-//     name: "novice_ex",
-//     year: 2019,
-//     month: 1,
-//     day: 1,
-//     squat: {sets: 3, reps: 5, weight: 135},
-//     press: {sets: 3, reps: 5, weight: 65},
-//     deadlift: {sets: 1, reps: 5, weight: 135}
-//   },
 //   {
 //     id: 1,
 //     name: "novice_ex",
-//     year: 2019,
-//     month: 1,
-//     day: 3,
-//     squat: {sets: 3, reps: 5, weight: 140},
-//     bench_press: {sets: 3, reps: 5, weight: 95},
-//     deadlift: {sets: 1, reps: 5, weight: 145}
-//   },
+//     history: [{
+//       year: 2019,
+//       month: 1,
+//       day: 3,
+//       lifts: [{
+//         squat: [{
+//           sets: 3,
+//           reps: 5,
+//           weight: 140
+//         }],
+//         bench_press: [{
+//           sets: 3,
+//           reps: 5,
+//           weight: 95
+//         }],
+//         deadlift: [{
+//           sets: 1,
+//           reps: 5,
+//           weight: 145
+//         }]
+//       }]
+//     }]
+//   }
+// ]
 //   {
 //     id: 1,
 //     name: "novice_ex",
