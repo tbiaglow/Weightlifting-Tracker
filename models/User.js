@@ -19,7 +19,7 @@ var UserSchema = new Schema({
     type: String,
     unique: false
   },
-  squat: [
+  Squat: [
     {
       // Store ObjectIds in the array
       type: Schema.Types.ObjectId,
@@ -27,7 +27,7 @@ var UserSchema = new Schema({
       ref: "Squat"
     }
   ],
-  deadlift: [
+  Deadlift: [
     {
       // Store ObjectIds in the array
       type: Schema.Types.ObjectId,

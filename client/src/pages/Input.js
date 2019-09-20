@@ -7,7 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Users extends Component {
+class Input extends Component {
   state = {
     users: []
   };
@@ -45,31 +45,10 @@ class Users extends Component {
               <FormBtn>Submit session</FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>User History</h1>
-            </Jumbotron>
-            {this.state.users.length ? (
-              <List>
-                {this.state.users.map(user => (
-                  <ListItem key={user.id}>
-                    <Link to={"/users/" + user.id}>
-                      <strong>
-                        {user.name}
-                      </strong>
-                    </Link>
-                    {/* <DeleteBtn /> */}
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
         </Row>
       </Container>
     );
   }
 }
 
-export default Users;
+export default Input;

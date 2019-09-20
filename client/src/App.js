@@ -1,5 +1,6 @@
 import React from "react";
-import Users from "./pages/Users";
+import Input from "./pages/Input";
+import User_Hub from "./pages/User_Hub";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -10,8 +11,8 @@ function App() {
       {/* <Users /> */}
       <Router>
         <div>
-          <Route exact path="/" component={Users} />
-          <Route exact path="/users" component={Users} />
+          <Route exact path="/" component={User_Hub} />
+          <Route exact path="/Input" component={Input} />
         </div>
       </Router>
 
