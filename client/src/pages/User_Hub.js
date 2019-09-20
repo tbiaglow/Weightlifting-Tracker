@@ -9,18 +9,20 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 
 class User_Hub extends Component {
   state = {
-    users: []
+    user: []
   };
 
   componentDidMount() {
-    this.loadUsers();
+    this.loadUser();
 
   }
 
-  loadUsers = () => {
-    API.getUsers()
+
+  loadUser = () => {
+    console.log(this.props.match.params.id)
+    API.getUser(this.props.match.params.id)
       .then(res => {
-        this.setState({ users: res.data })
+        this.setState({ user: res.data })
         console.log(res.data)
       })
       .catch(err => console.log(err));
@@ -34,9 +36,9 @@ class User_Hub extends Component {
             <Jumbotron>
               <h1>User History</h1>
             </Jumbotron>
-            {this.state.users.length ? (
+            {this.state.user.length ? (
               <List>
-                {this.state.users.map(user => (
+                {this.state.user.map(user => (
                   <ListItem key={user.id}>
                     <Link to={"/users/" + user.id + "/squat"}>
                       <strong>

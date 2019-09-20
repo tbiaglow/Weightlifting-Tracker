@@ -7,7 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-class Input extends Component {
+class User_Input extends Component {
   state = {
     users: []
   };
@@ -51,4 +51,4 @@ class Input extends Component {
   }
 }
 
-export default Input;
+export default User_Input;
