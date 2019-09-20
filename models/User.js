@@ -15,6 +15,10 @@ var UserSchema = new Schema({
     type: String,
     unique: false
   },
+  password: {
+    type: String,
+    unique: false
+  },
   squat: [
     {
       // Store ObjectIds in the array

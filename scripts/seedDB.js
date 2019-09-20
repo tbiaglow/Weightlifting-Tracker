@@ -12,6 +12,7 @@ const noviceSeed = [
   {
     id: 1,
     name: "novice_ex",
+    password: "1234",
     squat: [{
       history: [{
         year: 2019,
@@ -1451,6 +1452,7 @@ const intermediateSeed = [
   {
     id: 2,
     name: "intermediate_ex",
+    password: "1234",
     squat: [{
       history: [{
         year: 2019,
