@@ -17,7 +17,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/users/:id" component={User_Hub} />
           <Route exact path="/users/:id/squat" component={User_Squat} />
-          <Route exact path="/Input" component={User_Input} />
+          <Route exact path="/users/:id/Input" component={User_Input} />
           <Route exact path="/createaccount" component={CreateAccount} />
         </div>
       </Router>
