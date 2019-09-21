@@ -13,15 +13,8 @@ class User_Hub extends Component {
   };
 
   componentDidMount() {
-
+    this.loadUser()
   }
-
-//   displayAll = () => {
-//     this.state.display = [];
-//     this.state.all.forEach(i => {
-//         this.state.display.push(this.state.all[i]
-//     });
-//   };
 
   loadUser = () => {
     this.setState({ all: [] })
@@ -62,6 +55,8 @@ class User_Hub extends Component {
             {/* ========================================================================== */}
             <button onClick={() => this.loadRecent()}>Display Most Recent</button>
             {/* ========================================================================== */}
+            <button><Link to={"/users/" + this.props.match.params.id}>Back</Link></button>
+            <button><Link to={"/"}>Logout</Link></button>
             {this.state.all.length ? (
                 <List>
                     {this.state.all.map(i => (

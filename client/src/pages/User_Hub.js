@@ -36,6 +36,7 @@ class User_Hub extends Component {
             <Jumbotron>
               <h1>User History</h1>
             </Jumbotron>
+            <button><Link to={"/"}>Logout</Link></button>
             {this.state.user.length ? (
               <List>
                 {this.state.user.map(user => (

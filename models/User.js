@@ -13,7 +13,7 @@ var UserSchema = new Schema({
       // `name` must be unique and of type String
   name: {
     type: String,
-    unique: false
+    unique: true
   },
   password: {
     type: String,
