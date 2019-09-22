@@ -19,7 +19,8 @@ class User_Input extends Component {
     sets: "",
     reps: "",
     weight: "",
-    RPE: ""
+    RPE: "",
+    userData: []
   };
   // options = [{value: "squat", label: "squat"}, {value: "press", label: "press"}, {value: "deadlift", label: "deadlift"}];
   // defaultOption = this.options[0]
@@ -55,20 +56,34 @@ class User_Input extends Component {
     API.getUser(this.props.match.params.id)
     .then(res => {
       console.log(res.data)
+      var newHistoryItem;
       newHistoryItem = {
-        year: this.state.year,
-        month: this.state.month,
-        day: this.state.day
+        year: parseInt(this.state.year),
+        month: parseInt(this.state.month),
+        day: parseInt(this.state.day),
+        sets: [{
+          sets: parseInt(this.state.sets),
+          workPerSet: [{
+            reps: parseInt(this.state.reps),
+            weight: parseInt(this.state.weight),
+            RPE: parseInt(this.state.RPE)
+          }]
+        }]
       }
-      newHistoryItem.sets = {
-        sets: this.state.sets
-      }
-      newHistoryItem.workPerSet = {
-        reps: this.state.reps,
-        weight: this.state.weight,
-        RPE: this.state.RPE
-      }
+
       console.log(newHistoryItem)
+
+      // Switch statement depending on value of this.state.lift should go here
+      res.data[0].squat[0].history.push(newHistoryItem)
+      console.log(res.data)
+      this.state.userData = res.data
+
+    })
+    console.log(this.props.match.params.id)
+    API.deleteUser(this.props.match.params.id)
+    .then(() => {
+      console.log(this.state.userData)
+      API.saveUser(this.state.userData)
     })
   }
 
