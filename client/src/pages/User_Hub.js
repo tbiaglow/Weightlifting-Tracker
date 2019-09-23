@@ -20,8 +20,10 @@ class User_Hub extends Component {
 
   loadUser = () => {
     console.log(this.props.match.params.id)
+    //Get the user whose id matches the id in the URL
     API.getUser(this.props.match.params.id)
       .then(res => {
+        //Set this.state equal to the user data
         this.setState({ user: res.data })
         console.log(res.data)
       })

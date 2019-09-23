@@ -475,7 +475,7 @@ const noviceSeed = [
       {
         year: 2019,
         month: 3,
-        day: 2,
+        day: 30,
         sets: [{
           sets: 3,
           workPerSet: [{

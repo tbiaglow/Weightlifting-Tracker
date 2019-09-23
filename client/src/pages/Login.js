@@ -22,22 +22,30 @@ class Login extends Component {
         });
     };
     
+    //Strategy: Get all user data when user clicks login =>
+    //Loop through user data to see if any of the users have a username/password combo that matches those entered by user
+    //=> If there is a match, set that user's id equal to this.state.id, then use the id value to redirect the page
     handleFormSubmit = event => {
-        event.preventDefault();
-        if (this.state.userName && this.state.password) {
-          API.getUsers()
-            .then(res => {
-                this.setState({ allData: res.data })
-                var i;
-                for (i = 0; i< this.state.allData.length; i++) {
-                    if (this.state.allData[i].name === this.state.userName && this.state.allData[i].password === this.state.password) {
-                        this.setState({id: this.state.allData[i].id})
-                        console.log(this.state.id)
-                        window.location.href = "http://localhost:3000/users/" + this.state.id;
-                    }
-                }
-            })
-            .catch(err => console.log(err));
+      event.preventDefault();
+      // If statement ensures user has entered both a username and password
+      if (this.state.userName && this.state.password) {
+        //Get all users, then set this.state equal to the resulting object
+        API.getUsers()
+          .then(res => {
+              this.setState({ allData: res.data })
+              var i;
+              // For loop checks if there is a match between the username/password entered by the user and those in the database
+              for (i = 0; i< this.state.allData.length; i++) {
+                  if (this.state.allData[i].name === this.state.userName && this.state.allData[i].password === this.state.password) {
+                      //If there is a match, set this.state.id equal to the id in the database
+                      this.setState({id: this.state.allData[i].id})
+                      console.log(this.state.id)
+                      //Redirect to the user_hub of the user with the given id
+                      window.location.href = "http://localhost:3000/users/" + this.state.id;
+                  }
+              }
+          })
+          .catch(err => console.log(err));
         }
     };
 

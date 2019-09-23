@@ -7,11 +7,11 @@ import CreateAccount from "./pages/CreateAccount";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+//Sets up all possible URL routes
 function App() {
   return (
     <div>
       <Nav />
-      {/* <Users /> */}
       <Router>
         <div>
           <Route exact path="/" component={Login} />

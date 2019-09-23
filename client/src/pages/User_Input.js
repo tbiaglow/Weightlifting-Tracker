@@ -3,7 +3,6 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
-// import { Dropdown } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
@@ -11,10 +10,12 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 // import {Dropdown} from 'react-dropdown'
 
 class User_Input extends Component {
+  // Need to assign keys for each variable in user history so I can set up the schema correctly
   state = {
     year: "",
     month: "",
     day: "",
+    // this.state.lift should be switchable
     lift: "squat",
     sets: "",
     reps: "",
@@ -22,27 +23,14 @@ class User_Input extends Component {
     RPE: "",
     userData: []
   };
-  // options = [{value: "squat", label: "squat"}, {value: "press", label: "press"}, {value: "deadlift", label: "deadlift"}];
-  // defaultOption = this.options[0]
 
-  // componentDidMount() {
-  //   this.loadUsers();
-
-  // }
-
-  // loadUsers = () => {
-  //   API.getUsers()
-  //     .then(res => {
-  //       this.setState({ users: res.data })
-  //       console.log(res.data)
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
+  // Function to change desired lift, not working yet
+  //-----------------------------------------------------------------------------------------
   handleLiftButton = (lift) => {
     this.state.lift = lift
     console.log(this.state.lift)
   }
+  //-----------------------------------------------------------------------------------------
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -51,16 +39,22 @@ class User_Input extends Component {
     });
   };
 
+   // Overall strategy: get user's history => create new variable equal to this.state, organized according to model schema 
+  // => push this new variable into user's history => push new user history to database
   handleFormSubmit = event => {
     event.preventDefault();
+       //Get the user whose id matches the id in the URL
     API.getUser(this.props.match.params.id)
     .then(res => {
       console.log(res.data)
-      var newHistoryItem;
+       //Initialize new variable
+       var newHistoryItem;
+       //Set this new variable to an object with keys equal to the user input 
       newHistoryItem = {
         year: parseInt(this.state.year),
         month: parseInt(this.state.month),
         day: parseInt(this.state.day),
+        //Set data following the schema laid out in models folder
         sets: [{
           sets: parseInt(this.state.sets),
           workPerSet: [{
@@ -75,7 +69,9 @@ class User_Input extends Component {
 
       // Switch statement depending on value of this.state.lift should go here
       res.data[0].squat[0].history.push(newHistoryItem)
+      
       console.log(res.data)
+      //Set user's data equal to the new res.data to preserve it outside the function
       this.state.userData = res.data
 
     })

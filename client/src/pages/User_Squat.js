@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-
 class User_Hub extends Component {
   state = {
+    //Will hold user's history
     all: []
   };
 
@@ -16,10 +16,14 @@ class User_Hub extends Component {
     this.loadUser()
   }
 
+  //Function to display entire history, run immediately
   loadUser = () => {
+    //Reset the all array in case it's already filled from another function
     this.setState({ all: [] })
+    //Get the user whose id matches the id in the URL
     API.getUser(this.props.match.params.id)
       .then(res => {
+        //Set all to the desired user data
         this.setState({ all: res.data[0].squat[0].history })
         console.log(res.data[0].squat[0].history)
         console.log(this.state.all.pop())
@@ -57,6 +61,7 @@ class User_Hub extends Component {
             {/* ========================================================================== */}
             <button><Link to={"/users/" + this.props.match.params.id}>Back</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
+            {/* If the user has data, map it */}
             {this.state.all.length ? (
                 <List>
                     {this.state.all.map(i => (
