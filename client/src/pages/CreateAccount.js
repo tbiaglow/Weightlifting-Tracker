@@ -52,11 +52,11 @@ class CreateAccount extends Component {
                     id: this.state.id,
                     name: this.state.userName,
                     password: this.state.password,
-                    Squat: [],
-                    Deadlift: [],
-                    Press: [],
-                    Bench_Press: [],
-                    Power_Clean: []
+                    squat: [{history: []}],
+                    deadlift: [{history: []}],
+                    press: [{history: []}],
+                    bench_press: [{history: []}],
+                    power_clean: [{history: []}]
                 })
                 //Redirect page to user hub for the new user based on their id
                 window.location.href = "http://localhost:3000/users/" + this.state.id

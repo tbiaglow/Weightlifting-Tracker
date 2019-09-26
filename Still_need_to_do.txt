@@ -1,0 +1,6 @@
+To-do list on final project:
+MUST DO BY PRESENTATION DAY:
+Deploy to Heroku
+Convert data to 1RM before charting it
+Create additional array with derivates, plot on same chart
+Clean up userflow, especially page to add lift data
