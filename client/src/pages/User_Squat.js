@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer} from 'recharts';
+import {MyWindowPortal} from "../components/MyWindowPortal";
+
 class User_Squat extends Component {
   state = {
     //Will hold user's history
@@ -16,6 +19,7 @@ class User_Squat extends Component {
 
   componentDidMount() {
     this.loadUser()
+
   }
 
   //Function to display entire history, run immediately
@@ -44,17 +48,19 @@ class User_Squat extends Component {
           var dayString = array1.all[i].day.toString();
           var yearString = array1.all[i].year.toString();
           var d = new Date(monthString + "-" + dayString + "-" + yearString);
-          var dParsed = Date.parse(d);
+          // var dParsed = Date.parse(d);
           // console.log(millisecondDate)
 
           array1.data[i] = {
-              x: dParsed,
+              x: d,
               y: array1.all[i].sets[0].workPerSet[0].weight,
-              type: 'scatter'
+              // type: 'scatter'
           } 
           this.setState({data: array1.data})
         }
-        console.log(this.state.data)   
+        console.log(this.state.data)  
+
+
     })
       .catch(err => console.log(err));
   };
@@ -120,12 +126,37 @@ class User_Squat extends Component {
             )}
           </Col>
           <Col size="md-6 sm-12">
-          <Jumbotron>
+
+          {/* <div className='container' width='0'> */}
+          <MyWindowPortal>
+          {/* <Jumbotron>
             <h1>Charted History:</h1>
-          </Jumbotron>
-            {/* <canvas id="myChart" width="400" height="400"></canvas> */}
-            {/* {this.state.myChart} */}
-            {/* <Plot data={this.state.data} /> */}
+          </Jumbotron> */}
+          <ResponsiveContainer width='99%' height={500} >
+          {/* width='100%' height={200} */}
+          <LineChart
+
+            // width={500}
+            // height={200}
+            // cx="50%" 
+            // cy="50%" 
+            // outerRadius="80%"
+            data={this.state.data}
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="x" />
+            <YAxis />
+            <Tooltip />
+            {/* <Legend /> */}
+            <Line type="monotone" dataKey="y" stroke="#8884d8" activeDot={{ r: 8 }} />
+            {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+          </LineChart>
+          </ResponsiveContainer>
+          </MyWindowPortal>
+          {/* </div> */}
           </Col>
         </Row>
       </Container>
