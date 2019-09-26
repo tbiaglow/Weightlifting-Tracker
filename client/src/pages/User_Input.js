@@ -27,7 +27,8 @@ class User_Input extends Component {
   // Function to change desired lift, not working yet
   //-----------------------------------------------------------------------------------------
   handleLiftButton = (lift) => {
-    this.state.lift = lift
+    // event.preventDefault();
+    this.setState({lift: lift})
     console.log(this.state.lift)
   }
   //-----------------------------------------------------------------------------------------
@@ -72,7 +73,7 @@ class User_Input extends Component {
       
       console.log(res.data)
       //Set user's data equal to the new res.data to preserve it outside the function
-      this.state.userData = res.data
+      this.setState({userData: res.data[0]})
 
     })
     console.log(this.props.match.params.id)

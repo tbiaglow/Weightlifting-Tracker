@@ -5,44 +5,44 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/reactreadinglist"
+  "mongodb://localhost/weightlifting_db"
 );
 
-const noviceSeed = new db.User(
+const noviceSeed = [
     {
       id: 1,
-      name: "novice_ex",
+      name: "Tom",
       password: "1234",
-      squat: {
+      squat: [{
         history: [{
           year: 2019,
-          month: 1,
-          day: 1,
+          month: 9,
+          day: 19,
           sets: [{
-            sets: 3,
-            workPerSet: {
+            sets: 1,
+            workPerSet: [{
               reps: 5,
-              weight: 135
-            }
+              weight: 315
+            }]
           }]
         }]
-      },
-      press: {
+      }],
+      press: [{
         history: [{
           year: 2019,
-          month: 1,
-          day: 1,
+          month: 9,
+          day: 27,
           sets: [{
-            sets: 3,
-            workPerSet: {
-              reps: 5,
-              weight: 65
-            }
+            sets: 10,
+            workPerSet: [{
+              reps: 1,
+              weight: 152.5
+            }]
           }]
         }]
-      }
+      }]
     }
-)
+  ]
 
 
 db.User

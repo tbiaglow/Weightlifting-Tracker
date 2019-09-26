@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-class User_Hub extends Component {
+class User_Squat extends Component {
   state = {
     //Will hold user's history
-    all: []
+    all: [],
+    //Will hold x and y values for charting
+    data: [],
   };
 
   componentDidMount() {
@@ -26,8 +28,34 @@ class User_Hub extends Component {
         //Set all to the desired user data
         this.setState({ all: res.data[0].squat[0].history })
         console.log(res.data[0].squat[0].history)
-        console.log(this.state.all.pop())
-      })
+    //     console.log(this.state.all.pop())
+        var array1 = this.state
+        console.log(array1.all[0])
+      }).then(() => {
+        console.log(this.state)
+        var array1;
+        array1 = this.state
+        console.log(array1)
+        var data = [];
+        var labels = [];
+        for (var i = 0; i < array1.all.length; i++) {
+          var d;
+          var monthString = array1.all[i].month.toString();
+          var dayString = array1.all[i].day.toString();
+          var yearString = array1.all[i].year.toString();
+          var d = new Date(monthString + "-" + dayString + "-" + yearString);
+          var dParsed = Date.parse(d);
+          // console.log(millisecondDate)
+
+          array1.data[i] = {
+              x: dParsed,
+              y: array1.all[i].sets[0].workPerSet[0].weight,
+              type: 'scatter'
+          } 
+          this.setState({data: array1.data})
+        }
+        console.log(this.state.data)   
+    })
       .catch(err => console.log(err));
   };
 
@@ -91,10 +119,18 @@ class User_Hub extends Component {
                 <h3>No Results to Display</h3>
             )}
           </Col>
+          <Col size="md-6 sm-12">
+          <Jumbotron>
+            <h1>Charted History:</h1>
+          </Jumbotron>
+            {/* <canvas id="myChart" width="400" height="400"></canvas> */}
+            {/* {this.state.myChart} */}
+            {/* <Plot data={this.state.data} /> */}
+          </Col>
         </Row>
       </Container>
     );
   }
 }
 
-export default User_Hub;
+export default User_Squat;
