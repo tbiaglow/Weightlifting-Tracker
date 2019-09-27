@@ -1,6 +1,8 @@
 To-do list on final project:
-MUST DO BY PRESENTATION DAY:
 Deploy to Heroku
-Convert data to 1RM before charting it
-Create additional array with derivates, plot on same chart
+Add BW parameter, plot relative strength on same graph as absolute strength
+Make pages for other lifts, not just squat
+Figure out why rechart isn't spacing out x axis correctly
 Clean up userflow, especially page to add lift data
+Option to remove data
+Make powerpoint presentation

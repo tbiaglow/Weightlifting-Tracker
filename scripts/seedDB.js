@@ -1594,7 +1594,7 @@ const intermediateSeed = [
           sets: 3,
           workPerSet: [{
             reps: 4,
-            reps: 250,
+            weight: 250,
             RPE: 8
           }]
         }]

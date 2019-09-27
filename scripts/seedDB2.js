@@ -22,7 +22,48 @@ const noviceSeed = [
             sets: 1,
             workPerSet: [{
               reps: 5,
-              weight: 315
+              weight: 315,
+              RPE: 6
+            }]
+          },
+          {
+            sets: 2,
+            workPerSet: [{
+              reps: 4,
+              weight: 330,
+              RPE: 8
+            }]
+          }]
+        },
+        {
+          year: 2019,
+          month: 10,
+          day: 5,
+          sets: [{
+              sets: 2,
+              workPerSet: [{
+                reps: 5,
+                weight: 300,
+                RPE: 10
+              }]
+          }]
+        },
+        {
+          year: 2019,
+          month: 9,
+          day: 19,
+          sets: [{
+            sets: 1,
+            workPerSet: [{
+              reps: 5,
+              weight: 320
+            }]
+          },
+          {
+            sets: 2,
+            workPerSet: [{
+              reps: 4,
+              weight: 380
             }]
           }]
         }]
