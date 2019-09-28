@@ -41,8 +41,7 @@ class Login extends Component {
                       this.setState({id: this.state.allData[i].id})
                       console.log(this.state.id)
                       //Redirect to the user_hub of the user with the given id
-                      // window.location.href = "http://localhost:3000/users/" + this.state.id;
-                      window.location.href = "https://weightlifting-tracker.herokuapp.com/users/" + this.state.id
+                      window.location.href = "http://localhost:3000/users/" + this.state.id;
                   }
               }
           })
