@@ -101,6 +101,7 @@ class User_Remove extends Component {
       console.log(this.state.userData)
       API.saveUser(this.state.userData)
     })
+    alert("Session Removed!")
     }
 
 
@@ -116,7 +117,7 @@ class User_Remove extends Component {
               <Input name="year" value={this.state.year} onChange={this.handleInputChange} placeholder="Year (required)" />
               <Input name="month" value={this.state.month} onChange={this.handleInputChange} placeholder="Month (required)" />
               <Input name="day" value={this.state.day} onChange={this.handleInputChange} placeholder="Day of the month (required)" />
-              <h2>Select Lift: </h2>
+              <h2>Select Lift: {this.state.lift}</h2>
               <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
               <button name="pressbutton" onClick={this.handlePressButton}>Press</button>
               <button name="benchpressbutton" onClick={this.handleBenchPressButton}>Bench Press</button>

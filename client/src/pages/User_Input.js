@@ -106,6 +106,7 @@ class User_Input extends Component {
       console.log(this.state.userData)
       API.saveUser(this.state.userData)
     })
+    alert("Session Saved!")
   }
 
   render() {
