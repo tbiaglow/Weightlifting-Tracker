@@ -1,6 +1,10 @@
 import React from "react";
 import User_Input from "./pages/User_Input";
+import User_Remove from "./pages/User_Remove";
 import User_Squat from "./pages/User_Squat";
+import User_Press from "./pages/User_Press";
+import User_BenchPress from "./pages/User_BenchPress";
+import User_Deadlift from "./pages/User_Deadlift";
 import User_Hub from "./pages/User_Hub";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -17,7 +21,11 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/users/:id" component={User_Hub} />
           <Route exact path="/users/:id/squat" component={User_Squat} />
+          <Route exact path="/users/:id/press" component={User_Press} />
+          <Route exact path="/users/:id/benchpress" component={User_BenchPress} />
+          <Route exact path="/users/:id/deadlift" component={User_Deadlift} />
           <Route exact path="/users/:id/Input" component={User_Input} />
+          <Route exact path="/users/:id/Remove" component={User_Remove} />
           <Route exact path="/createaccount" component={CreateAccount} />
         </div>
       </Router>

@@ -24,11 +24,26 @@ class User_Input extends Component {
     userData: []
   };
 
-  // Function to change desired lift, not working yet
+  // Functions to change desired lift
   //-----------------------------------------------------------------------------------------
-  handleLiftButton = (lift) => {
-    // event.preventDefault();
-    this.setState({lift: lift})
+  handleSquatButton = event => {
+    event.preventDefault();
+    this.setState({lift: "squat"})
+    console.log(this.state.lift)
+  }
+  handlePressButton = event => {
+    event.preventDefault();
+    this.setState({lift: "press"})
+    console.log(this.state.lift)
+  }
+  handleBenchPressButton = event => {
+    event.preventDefault();
+    this.setState({lift: "bench press"})
+    console.log(this.state.lift)
+  }
+  handleDeadliftButton = event => {
+    event.preventDefault();
+    this.setState({lift: "deadlift"})
     console.log(this.state.lift)
   }
   //-----------------------------------------------------------------------------------------
@@ -69,7 +84,16 @@ class User_Input extends Component {
       console.log(newHistoryItem)
 
       // Switch statement depending on value of this.state.lift should go here
-      res.data[0].squat[0].history.push(newHistoryItem)
+      switch (this.state.lift) {
+        case "squat": res.data[0].squat[0].history.push(newHistoryItem)
+        break;
+        case "press": res.data[0].press[0].history.push(newHistoryItem)
+        break;
+        case "bench press": res.data[0].bench_press[0].history.push(newHistoryItem)
+        break;
+        case "deadlift": res.data[0].deadlift[0].history.push(newHistoryItem)
+        break;
+      }
       
       console.log(res.data)
       //Set user's data equal to the new res.data to preserve it outside the function
@@ -100,8 +124,10 @@ class User_Input extends Component {
               {/* <Input name="press" placeholder="Press" />
               <Input name="deadlift" placeholder="Deadlift" /> */}
               <h2>Select Lift: </h2>
-              <button name="squatbutton" onClick={() => this.handleLiftButton("squat")}>Squat</button>
-              <button name="pressbutton" onClick={() => this.handleLiftButton("press")}>Press</button>
+              <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
+              <button name="pressbutton" onClick={this.handlePressButton}>Press</button>
+              <button name="benchpressbutton" onClick={this.handleSquatButton}>Bench Press</button>
+              <button name="deadliftbutton" onClick={this.handlePressButton}>Deadlift</button>
               {/* <Select options={this.options} onChange={(values) => this.setValues(values)} /> */}
               {/* <Dropdown options={this.options} onChange={this._onSelect} value={this.defaultOption} placeholder="Select an option" /> */}
               <h2>Enter {this.state.lift} Volume:</h2>
