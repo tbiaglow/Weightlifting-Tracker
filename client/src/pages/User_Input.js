@@ -126,8 +126,8 @@ class User_Input extends Component {
               <h2>Select Lift: </h2>
               <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
               <button name="pressbutton" onClick={this.handlePressButton}>Press</button>
-              <button name="benchpressbutton" onClick={this.handleSquatButton}>Bench Press</button>
-              <button name="deadliftbutton" onClick={this.handlePressButton}>Deadlift</button>
+              <button name="benchpressbutton" onClick={this.handleBenchPressButton}>Bench Press</button>
+              <button name="deadliftbutton" onClick={this.handleDeadliftButton}>Deadlift</button>
               {/* <Select options={this.options} onChange={(values) => this.setValues(values)} /> */}
               {/* <Dropdown options={this.options} onChange={this._onSelect} value={this.defaultOption} placeholder="Select an option" /> */}
               <h2>Enter {this.state.lift} Volume:</h2>
@@ -141,6 +141,7 @@ class User_Input extends Component {
               >Submit session</FormBtn>
             </form>
             <button><Link to={"/users/" + this.props.match.params.id}>View History</Link></button>
+            <button><Link to={"/users/" + this.props.match.params.id + "/Remove"}>Remove a Session</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
           </Col>
         </Row>
