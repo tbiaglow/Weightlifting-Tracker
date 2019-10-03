@@ -42,7 +42,8 @@ class Login extends Component {
                       console.log(this.state.id)
                       //Redirect to the user_hub of the user with the given id
                       // window.location.href = "http://localhost:3000/users/" + this.state.id;
-                      window.location.href = "https://weightlifting-tracker.herokuapp.com/users/" + this.state.id
+                      // window.location.href = "https://weightlifting-tracker.herokuapp.com/users/" + this.state.id
+                      window.location.href = "/users/" + this.state.id;
                   }
               }
           })

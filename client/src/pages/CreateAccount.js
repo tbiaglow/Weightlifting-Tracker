@@ -60,7 +60,7 @@ class CreateAccount extends Component {
                 })
                 //Redirect page to user hub for the new user based on their id
                 // window.location.href = "http://localhost:3000/users/" + this.state.id
-                window.location.href = "https://weightlifting-tracker.herokuapp.com/users/" + this.state.id
+                window.location.href = "/users/" + this.state.id
                 } else {
                     //reset this.state.okayToProceed if user failed the check above, so they can enter a new username
                     //If we don't reset this value, the user will always fail the check after the first failed attempt
