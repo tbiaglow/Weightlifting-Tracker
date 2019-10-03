@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import { Redirect } from 'react-router';
 
 class CreateAccount extends Component {
     state = {
         allData: [],
         userName: "",
         password: "",
-        okayToProceed: true
+        okayToProceed: true,
+        redirect: false
     };
 
     handleInputChange = event => {
@@ -57,10 +59,12 @@ class CreateAccount extends Component {
                     press: [{history: []}],
                     bench_press: [{history: []}],
                     power_clean: [{history: []}]
-                })
+                }).then(() => {
                 //Redirect page to user hub for the new user based on their id
                 // window.location.href = "http://localhost:3000/users/" + this.state.id
-                window.location.href = "/users/" + this.state.id
+                // window.location.href = "/users/" + this.state.id
+                this.setState({redirect: true});
+                })
                 } else {
                     //reset this.state.okayToProceed if user failed the check above, so they can enter a new username
                     //If we don't reset this value, the user will always fail the check after the first failed attempt
@@ -74,6 +78,9 @@ class CreateAccount extends Component {
     };
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to={"/users/" + this.state.id} />;
+        }
         return(
             <Container fluid>
                 <Row>

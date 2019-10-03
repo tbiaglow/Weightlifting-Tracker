@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import { Redirect } from 'react-router';
 
 class Login extends Component {
     state = {
         allData: [],
         userName: "",
         password: "",
-        id: ""
+        id: "",
+        redirect: false
     };
 
     handleInputChange = event => {
@@ -43,7 +45,8 @@ class Login extends Component {
                       //Redirect to the user_hub of the user with the given id
                       // window.location.href = "http://localhost:3000/users/" + this.state.id;
                       // window.location.href = "https://weightlifting-tracker.herokuapp.com/users/" + this.state.id
-                      window.location.href = "/users/" + this.state.id;
+                      // window.location.href = "/users/" + this.state.id;
+                      this.setState({redirect: true});
                   }
               }
           })
@@ -52,6 +55,9 @@ class Login extends Component {
     };
 
     render() {
+        if (this.state.redirect) {
+          return <Redirect push to={"/users/" + this.state.id} />;
+        }
         return(
         <Container fluid>
         <Row>
