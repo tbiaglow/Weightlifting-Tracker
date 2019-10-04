@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
 import {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer} from 'recharts';
 import {MyWindowPortal} from "../components/MyWindowPortal";
 
@@ -19,7 +17,6 @@ class User_Deadlift extends Component {
 
   componentDidMount() {
     this.loadUser()
-
   }
 
   //Function to display entire history, run immediately
@@ -31,31 +28,15 @@ class User_Deadlift extends Component {
       .then(res => {
         //Set all to the desired user data
         this.setState({ all: res.data[0].deadlift[0].history })
-        // console.log(res.data[0].deadlift[0].history)
-    //     console.log(this.state.all.pop())
         var array1 = this.state
-        // console.log(array1.all[0])
       }).then(() => {
-        // console.log(this.state)
         var array1;
         array1 = this.state
-        // console.log(array1)
-        // var data = [];
-        // var labels = [];
-        // console.log(array1.all[0].sets[array1.all[0].sets.length - 1])
         var oneRMArray = this.convertTo1RM(array1);
-        // console.log(oneRMArray)
-        // console.log(array1.all[0])
         var data = this.formArray(array1, oneRMArray);
-        // console.log(data)
         var data = this.trimArray(data)
-        // console.log(data)
-        // var derivativeData
         var data = this.differentiate(data)
-
         this.setState({data: data})
-        // console.log(this.state.data)  
-
     })
       .catch(err => console.log(err));
   };
@@ -368,14 +349,11 @@ class User_Deadlift extends Component {
       var dayString = array.all[i].day.toString();
       var yearString = array.all[i].year.toString();
       var d = new Date(monthString + "-" + dayString + "-" + yearString);
-      // console.log(d)
       var dParsed = Date.parse(d);
-      // console.log(millisecondDate)
 
       data[i] = {
           x: dParsed,
           y: oneRMArray[i]
-          // type: 'scatter'
       } 
     }
     return data
@@ -389,7 +367,6 @@ class User_Deadlift extends Component {
         if (array[i].y < arrayMax) {
           array.splice(i, 1);
           i--;
-          // array[i].y = NaN;
         } else if (array[i].y >= arrayMax) {
           arrayMax = array[i].y
         }

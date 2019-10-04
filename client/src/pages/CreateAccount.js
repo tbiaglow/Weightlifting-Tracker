@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router';
 
@@ -20,7 +18,7 @@ class CreateAccount extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
     };
 
@@ -60,9 +58,7 @@ class CreateAccount extends Component {
                     bench_press: [{history: []}],
                     power_clean: [{history: []}]
                 }).then(() => {
-                //Redirect page to user hub for the new user based on their id
-                // window.location.href = "http://localhost:3000/users/" + this.state.id
-                // window.location.href = "/users/" + this.state.id
+                //Set state to redirect page
                 this.setState({redirect: true});
                 })
                 } else {
@@ -78,6 +74,7 @@ class CreateAccount extends Component {
     };
 
     render() {
+        //Redirect page to user hub for the new user based on their id
         if (this.state.redirect) {
             return <Redirect push to={"/users/" + this.state.id} />;
         }
@@ -86,7 +83,7 @@ class CreateAccount extends Component {
                 <Row>
                     <Col size="md-6">
                         <Jumbotron>
-                        <h1>Please enter a username and password</h1>
+                            <h1>Please enter a username and password</h1>
                         </Jumbotron>
                         <form>
                         <Input name="userName" value={this.state.userName} onChange={this.handleInputChange} placeholder="User Name (required)" />
@@ -103,7 +100,6 @@ class CreateAccount extends Component {
                         <button><Link to={"/"}>Login</Link></button>
                     </Col>
                 </Row>
-                
             </Container>
         )
     }

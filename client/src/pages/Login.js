@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Redirect } from 'react-router';
 
@@ -20,7 +18,7 @@ class Login extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
     };
     
@@ -42,10 +40,7 @@ class Login extends Component {
                       //If there is a match, set this.state.id equal to the id in the database
                       this.setState({id: this.state.allData[i].id})
                       console.log(this.state.id)
-                      //Redirect to the user_hub of the user with the given id
-                      // window.location.href = "http://localhost:3000/users/" + this.state.id;
-                      // window.location.href = "https://weightlifting-tracker.herokuapp.com/users/" + this.state.id
-                      // window.location.href = "/users/" + this.state.id;
+                      //Set state to redirect page
                       this.setState({redirect: true});
                   }
               }
@@ -55,6 +50,7 @@ class Login extends Component {
     };
 
     render() {
+        //Redirect page to user hub for the new user based on their id
         if (this.state.redirect) {
           return <Redirect push to={"/users/" + this.state.id} />;
         }

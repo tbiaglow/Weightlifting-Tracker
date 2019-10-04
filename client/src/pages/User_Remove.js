@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
 class User_Remove extends Component {
@@ -13,7 +11,7 @@ class User_Remove extends Component {
       year: "",
       month: "",
       day: "",
-      // this.state.lift should be switchable
+      // this.state.lift is switchable
       lift: "squat",
       sets: "",
       reps: "",
@@ -58,7 +56,7 @@ class User_Remove extends Component {
   //pop that history element out of res.data array => update as in user_input
   handleFormSubmit = event => {
     event.preventDefault();
-       //Get the user whose id matches the id in the URL
+    //Get the user whose id matches the id in the URL
     API.getUser(this.props.match.params.id)
     .then(res => {
       console.log(res.data)

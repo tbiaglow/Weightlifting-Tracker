@@ -1,5 +1,5 @@
 To-do list on final project:
-Deploy to Heroku
+Allow user to enter sessions out of order, sort automatically
 Add BW parameter, plot relative strength on same graph as absolute strength
 Figure out why rechart isn't spacing out x axis correctly
-Make powerpoint presentation
+Require authentication if user tries to get into another user's account via the url

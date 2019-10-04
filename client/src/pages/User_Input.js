@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-// import {Select} from "react-dropdown-select";
-// import {Dropdown} from 'react-dropdown'
 
 class User_Input extends Component {
   // Need to assign keys for each variable in user history so I can set up the schema correctly
@@ -55,7 +51,7 @@ class User_Input extends Component {
     });
   };
 
-   // Overall strategy: get user's history => create new variable equal to this.state, organized according to model schema 
+  // Overall strategy: get user's history => create new variable equal to this.state, organized according to model schema 
   // => push this new variable into user's history => push new user history to database
   handleFormSubmit = event => {
     event.preventDefault();

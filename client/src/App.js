@@ -29,10 +29,6 @@ function App() {
           <Route exact path="/createaccount" component={CreateAccount} />
         </div>
       </Router>
-
-          {/* <Route exact path="/users/:id" component={Users} /> */}
-          {/* <Route component={NoMatch} /> */}
-
     </div>
   );
 }
