@@ -72,7 +72,7 @@ class User_Input extends Component {
           workPerSet: [{
             reps: parseInt(this.state.reps),
             weight: parseInt(this.state.weight),
-            RPE: parseInt(this.state.RPE)
+            RPE: parseFloat(this.state.RPE)
           }]
         }]
       }
