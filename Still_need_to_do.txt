@@ -3,6 +3,5 @@ Refactor 1rm calculation so it uses best set instead of last set
 Block user from changing URL to access another user's account
 Dropdown menus
 Enable user to enter lifts out of chronological order
-Check to make sure RPE is not being read as an integer
 Add BW parameter, plot relative strength on same graph as absolute strength
 Figure out why rechart isn't spacing out x axis correctly
