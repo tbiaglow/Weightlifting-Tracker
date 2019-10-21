@@ -81,13 +81,13 @@ class User_Input extends Component {
 
       // Switch statement depending on value of this.state.lift should go here
       switch (this.state.lift) {
-        case "squat": res.data[0].squat[0].history.push(newHistoryItem)
+        case "squat": this.placeHistoryItem(res.data[0].squat, newHistoryItem)
         break;
-        case "press": res.data[0].press[0].history.push(newHistoryItem)
+        case "press": this.placeHistoryItem(res.data[0].press, newHistoryItem)
         break;
-        case "bench press": res.data[0].bench_press[0].history.push(newHistoryItem)
+        case "bench press": this.placeHistoryItem(res.data[0].bench_press, newHistoryItem)
         break;
-        case "deadlift": res.data[0].deadlift[0].history.push(newHistoryItem)
+        case "deadlift": this.placeHistoryItem(res.data[0].deadlift, newHistoryItem)
         break;
       }
       
@@ -104,6 +104,25 @@ class User_Input extends Component {
     })
     alert("Session Saved!")
   }
+
+  placeHistoryItem = (lift, newHistoryItem) => {
+    var historyItemPushed = false;
+    for (var i = 0; i < lift[0].history.length; i++) {
+      if (lift[0].history[i].year === newHistoryItem.year && lift[0].history[i].month === newHistoryItem.month && lift[0].history[i].day === newHistoryItem.day) {
+        lift[0].history[i].sets.push(newHistoryItem.sets[0])
+        historyItemPushed = true;
+      }
+    }
+    if (historyItemPushed === false) {
+     lift[0].history.push(newHistoryItem)
+    }
+  }
+
+  // sortHistory = (lift) => {
+
+  // }
+
+  // res.data[0].squat[0].history.push(newHistoryItem)
 
   render() {
     return (
