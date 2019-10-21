@@ -81,13 +81,21 @@ class User_Input extends Component {
 
       // Switch statement depending on value of this.state.lift should go here
       switch (this.state.lift) {
-        case "squat": this.placeHistoryItem(res.data[0].squat, newHistoryItem)
+        case "squat":
+          this.placeHistoryItem(res.data[0].squat, newHistoryItem)
+          this.sortHistory(res.data[0].squat)
         break;
-        case "press": this.placeHistoryItem(res.data[0].press, newHistoryItem)
+        case "press":
+          this.placeHistoryItem(res.data[0].press, newHistoryItem)
+          this.sortHistory(res.data[0].press)
         break;
-        case "bench press": this.placeHistoryItem(res.data[0].bench_press, newHistoryItem)
+        case "bench press":
+          this.placeHistoryItem(res.data[0].bench_press, newHistoryItem)
+          this.sortHistory(res.data[0].bench_press)
         break;
-        case "deadlift": this.placeHistoryItem(res.data[0].deadlift, newHistoryItem)
+        case "deadlift":
+          this.placeHistoryItem(res.data[0].deadlift, newHistoryItem)
+          this.sortHistory(res.data[0].deadlift)
         break;
       }
       
@@ -118,9 +126,29 @@ class User_Input extends Component {
     }
   }
 
-  // sortHistory = (lift) => {
-
-  // }
+  sortHistory = (lift) => {
+    for (var i = 0; i < lift[0].history.length - 1; i++) {
+      if (lift[0].history[i].year > lift[0].history[i + 1].year) {
+        var tempObject = lift[0].history[i + 1];
+        lift[0].history[i + 1] = lift[0].history[i];
+        lift[0].history[i] = tempObject;
+      }
+    }
+    for (var i = 0; i < lift[0].history.length - 1; i++) {
+      if (lift[0].history[i].year === lift[0].history[i + 1].year && lift[0].history[i].month > lift[0].history[i + 1].month) {
+        var tempObject = lift[0].history[i + 1];
+        lift[0].history[i + 1] = lift[0].history[i];
+        lift[0].history[i] = tempObject;
+      }
+    }
+    for (var i = 0; i < lift[0].history.length - 1; i++) {
+      if (lift[0].history[i].year === lift[0].history[i + 1].year && lift[0].history[i].month === lift[0].history[i + 1].month && lift[0].history[i].day > lift[0].history[i + 1].day) {
+        var tempObject = lift[0].history[i + 1];
+        lift[0].history[i + 1] = lift[0].history[i];
+        lift[0].history[i] = tempObject;
+      }
+    }
+  }
 
   // res.data[0].squat[0].history.push(newHistoryItem)
 
