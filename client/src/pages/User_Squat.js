@@ -29,10 +29,8 @@ class User_Squat extends Component {
       .then(res => {
         //Set all to the desired user data
         this.setState({ all: res.data[0].squat[0].history })
-        var array1 = this.state
       }).then(() => {
-        var array1;
-        array1 = this.state
+        var array1 = this.state
         var oneRMArray = convertTo1RM(array1);
         var data = this.formArray(array1, oneRMArray);
         var data = this.trimArray(data)
