@@ -1,5 +1,4 @@
 To-do list on final project:
-Enable user to enter lifts out of chronological order
 Dropdown menus
 Block user from changing URL to access another user's account
 Add BW parameter, plot relative strength on same graph as absolute strength

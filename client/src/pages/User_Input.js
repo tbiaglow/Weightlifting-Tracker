@@ -4,6 +4,14 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Select from 'react-select';
+
+const lifts = [
+  { value: 'squat', label: 'Squat' },
+  { value: 'press', label: 'Press' },
+  { value: 'deadlift', label: 'Deadlift' },
+  { value: 'bench press', label: 'Bench Press' }
+];
 
 class User_Input extends Component {
   // Need to assign keys for each variable in user history so I can set up the schema correctly
@@ -22,27 +30,38 @@ class User_Input extends Component {
 
   // Functions to change desired lift
   //-----------------------------------------------------------------------------------------
-  handleSquatButton = event => {
-    event.preventDefault();
-    this.setState({lift: "squat"})
-    console.log(this.state.lift)
-  }
-  handlePressButton = event => {
-    event.preventDefault();
-    this.setState({lift: "press"})
-    console.log(this.state.lift)
-  }
-  handleBenchPressButton = event => {
-    event.preventDefault();
-    this.setState({lift: "bench press"})
-    console.log(this.state.lift)
-  }
-  handleDeadliftButton = event => {
-    event.preventDefault();
-    this.setState({lift: "deadlift"})
-    console.log(this.state.lift)
-  }
+  // handleSquatButton = event => {
+  //   event.preventDefault();
+  //   this.setState({lift: "squat"})
+  //   console.log(this.state.lift)
+  // }
+  // handlePressButton = event => {
+  //   event.preventDefault();
+  //   this.setState({lift: "press"})
+  //   console.log(this.state.lift)
+  // }
+  // handleBenchPressButton = event => {
+  //   event.preventDefault();
+  //   this.setState({lift: "bench press"})
+  //   console.log(this.state.lift)
+  // }
+  // handleDeadliftButton = event => {
+  //   event.preventDefault();
+  //   this.setState({lift: "deadlift"})
+  //   console.log(this.state.lift)
+  // }
   //-----------------------------------------------------------------------------------------
+
+  handleLiftChange = lift => {
+    // this.setState(
+    //   { lift },
+    //   () => console.log(`Lift selected:`, this.state.lift)
+    // );
+    // event.preventDefault();
+    // this.setState({lift: lift})
+    this.setState({lift: lift.value})
+    console.log(this.state.lift)
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -150,9 +169,9 @@ class User_Input extends Component {
     }
   }
 
-  // res.data[0].squat[0].history.push(newHistoryItem)
 
   render() {
+    const { lift } = this.state;
     return (
       <Container fluid>
         <Row>
@@ -164,16 +183,16 @@ class User_Input extends Component {
               <Input name="year" value={this.state.year} onChange={this.handleInputChange} placeholder="Year (required)" />
               <Input name="month" value={this.state.month} onChange={this.handleInputChange} placeholder="Month (required)" />
               <Input name="day" value={this.state.day} onChange={this.handleInputChange} placeholder="Day of the month (required)" />
-              {/* <Input name="squat" placeholder="Squat" /> */}
-              {/* <Input name="press" placeholder="Press" />
-              <Input name="deadlift" placeholder="Deadlift" /> */}
               <h2>Select Lift: </h2>
-              <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
+              {/* <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
               <button name="pressbutton" onClick={this.handlePressButton}>Press</button>
               <button name="benchpressbutton" onClick={this.handleBenchPressButton}>Bench Press</button>
-              <button name="deadliftbutton" onClick={this.handleDeadliftButton}>Deadlift</button>
-              {/* <Select options={this.options} onChange={(values) => this.setValues(values)} /> */}
-              {/* <Dropdown options={this.options} onChange={this._onSelect} value={this.defaultOption} placeholder="Select an option" /> */}
+              <button name="deadliftbutton" onClick={this.handleDeadliftButton}>Deadlift</button> */}
+              <Select
+                value={lift}
+                onChange={this.handleLiftChange}
+                options={lifts}
+              />
               <h2>Enter {this.state.lift} Volume:</h2>
               <Input name="sets" value={this.state.sets} onChange={this.handleInputChange} placeholder="sets" />
               <Input name="reps" value={this.state.reps} onChange={this.handleInputChange} placeholder="reps" />
