@@ -13,13 +13,19 @@ const lifts = [
   { value: 'bench press', label: 'Bench Press' }
 ];
 
+const rpeValues = [
+  {value: 5, label: "5"}, {value: 6, label: "6"}, {value: 6.5, label: "6.5"},
+  {value: 7, label: "7"}, {value: 7.5, label: "7.5"}, {value: 8, label: "8"},
+  {value: 8.5, label: "8.5"}, {value: 9, label: "9"},
+  {value: 9.5, label: "9.5"}, {value: 10, label: "10"},
+  {value: "", label: "None"}
+];
+
 class User_Input extends Component {
-  // Need to assign keys for each variable in user history so I can set up the schema correctly
   state = {
     year: "",
     month: "",
     day: "",
-    // this.state.lift should be switchable
     lift: "squat",
     sets: "",
     reps: "",
@@ -28,39 +34,14 @@ class User_Input extends Component {
     userData: []
   };
 
-  // Functions to change desired lift
-  //-----------------------------------------------------------------------------------------
-  // handleSquatButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "squat"})
-  //   console.log(this.state.lift)
-  // }
-  // handlePressButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "press"})
-  //   console.log(this.state.lift)
-  // }
-  // handleBenchPressButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "bench press"})
-  //   console.log(this.state.lift)
-  // }
-  // handleDeadliftButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "deadlift"})
-  //   console.log(this.state.lift)
-  // }
-  //-----------------------------------------------------------------------------------------
-
+  //Function to change desired lift from dropdown menu
   handleLiftChange = lift => {
-    // this.setState(
-    //   { lift },
-    //   () => console.log(`Lift selected:`, this.state.lift)
-    // );
-    // event.preventDefault();
-    // this.setState({lift: lift})
     this.setState({lift: lift.value})
-    console.log(this.state.lift)
+  };
+
+  //Function to change RPE from dropdown menu
+  handleRPEChange = RPE => {
+    this.setState({RPE: RPE.value})
   };
 
   handleInputChange = event => {
@@ -132,6 +113,9 @@ class User_Input extends Component {
     alert("Session Saved!")
   }
 
+  //Function to check if the exact year/month/day entered is already present in the dataset
+  //If it is, must push lift volume to that data item instead of creating a new one
+  //If not, push data to end of array
   placeHistoryItem = (lift, newHistoryItem) => {
     var historyItemPushed = false;
     for (var i = 0; i < lift[0].history.length; i++) {
@@ -145,6 +129,7 @@ class User_Input extends Component {
     }
   }
 
+  //Function to sort all history items by date
   sortHistory = (lift) => {
     for (var i = 0; i < lift[0].history.length - 1; i++) {
       if (lift[0].history[i].year > lift[0].history[i + 1].year) {
@@ -172,6 +157,7 @@ class User_Input extends Component {
 
   render() {
     const { lift } = this.state;
+    const { RPE } = this.state;
     return (
       <Container fluid>
         <Row>
@@ -184,10 +170,6 @@ class User_Input extends Component {
               <Input name="month" value={this.state.month} onChange={this.handleInputChange} placeholder="Month (required)" />
               <Input name="day" value={this.state.day} onChange={this.handleInputChange} placeholder="Day of the month (required)" />
               <h2>Select Lift: </h2>
-              {/* <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
-              <button name="pressbutton" onClick={this.handlePressButton}>Press</button>
-              <button name="benchpressbutton" onClick={this.handleBenchPressButton}>Bench Press</button>
-              <button name="deadliftbutton" onClick={this.handleDeadliftButton}>Deadlift</button> */}
               <Select
                 value={lift}
                 onChange={this.handleLiftChange}
@@ -197,7 +179,13 @@ class User_Input extends Component {
               <Input name="sets" value={this.state.sets} onChange={this.handleInputChange} placeholder="sets" />
               <Input name="reps" value={this.state.reps} onChange={this.handleInputChange} placeholder="reps" />
               <Input name="weight" value={this.state.weight} onChange={this.handleInputChange} placeholder="weight" />
-              <Input name="RPE" value={this.state.RPE} onChange={this.handleInputChange} placeholder="RPE" />
+              <h3>RPE: {this.state.RPE}</h3>
+              <Select
+                value={RPE}
+                onChange={this.handleRPEChange}
+                options={rpeValues}
+              />
+              <text>Note: 1RM data is not calculated for RPE values less than 6.5</text>
               <FormBtn
                 disabled={!(this.state.sets && this.state.reps && this.state.weight)}
                 onClick={this.handleFormSubmit}
