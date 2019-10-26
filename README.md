@@ -1,5 +1,7 @@
 # Weightlifting-Tracker
 
+Deployed app: https://weightlifting-tracker.herokuapp.com/
+
 Current web applications for tracking strength progression (strengthlevel.com, symmetricstrength.com) do not account for the user's complete training history, but rather calculate a 1 rep max for a given lift using a single set.
 
 This project will create a site that allows users to track their progress in weightlifting and powerlifting. The user can input information about each of their workouts (what exercises they did, sets, repetitions, RPE etc.). The site will track the users progress over time on their most important lifts (squat, deadlift, press, etc.), as well as their rate of progress (1st derivative with respect to time).
