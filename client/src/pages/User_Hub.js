@@ -41,6 +41,7 @@ class User_Hub extends Component {
               <List>
                 {this.state.user.map(user => (
                   <ListItem key={user.id}>
+                    <div>Competitive Lifts (Powerlifting and Strengthlifting)</div>
                     <Link to={"/users/" + user.id + "/squat"}>
                       <strong>
                         Squat
@@ -65,9 +66,16 @@ class User_Hub extends Component {
                       </strong>
                     </Link>
                     <br></br>
-                    <Link to={"/users/" + user.id + "/powerclean"}>
+                    <div>Competitive Lifts (Olympic Lifting)</div>
+                    <Link to={"/users/" + user.id + "/snatch"}>
                       <strong>
-                        Power Clean
+                        Snatch
+                      </strong>
+                    </Link>
+                    <br></br>
+                    <Link to={"/users/" + user.id + "/cleanandjerk"}>
+                      <strong>
+                        Clean and Jerk
                       </strong>
                     </Link>
                     {/* <DeleteBtn /> */}
