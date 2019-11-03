@@ -66,7 +66,8 @@ class User_Hub extends Component {
                       </strong>
                     </Link>
                     <br></br>
-                    <div>Competitive Lifts (Olympic Lifting)</div>
+                    <br></br>
+                    <div>Competitive Lifts (Olympic Weightlifting)</div>
                     <Link to={"/users/" + user.id + "/snatch"}>
                       <strong>
                         Snatch

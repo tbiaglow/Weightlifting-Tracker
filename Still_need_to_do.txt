@@ -1,4 +1,3 @@
 To-do list on final project:
 Block user from changing URL to access another user's account
 Add BW parameter, plot relative strength on same graph as absolute strength
-Figure out why rechart isn't spacing out x axis correctly

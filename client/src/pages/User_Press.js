@@ -33,9 +33,11 @@ class User_Press extends Component {
         var array1 = this.state;
         var oneRMArray = convertTo1RM(array1);
         var data = this.formArray(array1, oneRMArray);
-        var data = this.trimArray(data)
-        var data = this.differentiate(data)
+        data = this.trimArray(data)
+        data = this.differentiate(data)
+        data = this.createNullPoints(data)
         this.setState({data: data})
+        console.log(this.state.data)
     })
       .catch(err => console.log(err));
   };
@@ -83,6 +85,30 @@ class User_Press extends Component {
     }
     data[data.length - 1].yDeriv = ((data[data.length - 1].y - data[data.length - 2].y) / (data[data.length - 1].x - data[data.length - 2].x)) * 86400000
     return data
+  }
+
+  createNullPoints = data => {
+    var i = 0;
+    while (i < data.length - 1) {
+      //86400000 is the number of milliseconds in a day
+      if (data[i + 1].x - data[i].x > 86400000) {
+        var numNullPoints = (data[i + 1].x - data[i].x) / 86400000;
+        var firstPart = data.splice(0, i + 1);
+        var j = 1;
+        while (j < numNullPoints) {
+            var xVal = firstPart[i].x;
+          var newPoint = {x: xVal + 86400000 * j};
+            firstPart.push(newPoint);
+          j += 1;
+        }
+        for (var k = 0; k < data.length; k++) {
+            firstPart.push(data[k]);
+        }
+        data = firstPart;
+      }
+      i += 1;
+    }
+  return data;
   }
 
   //NOT WORKING, don't know why
@@ -155,14 +181,14 @@ class User_Press extends Component {
               top: 5, right: 30, left: 20, bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="0 3" />
             <XAxis dataKey="x" />
             <YAxis yAxisId="left" />
             <YAxis yAxisId="right" orientation="right" />
             <Tooltip />
             <Legend />
-            <Line yAxisId="left" type="monotone" dataKey="y" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line yAxisId="right" type="monotone" dataKey="yDeriv" stroke="#82ca9d" />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line connectNulls yAxisId="right" type="monotone" dataKey="yDeriv" stroke="#82ca9d" />
           </LineChart>
           </ResponsiveContainer>
           </MyWindowPortal>
