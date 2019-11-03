@@ -86,7 +86,7 @@ class CreateAccount extends Component {
                         <Jumbotron>
                             <h1>Please enter a username and password</h1>
                         </Jumbotron>
-                        <form>
+                        <form autoComplete="off">
                         <Input name="userName" value={this.state.userName} onChange={this.handleInputChange} placeholder="User Name (required)" />
                         <Input name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password (required)" />
                         <FormBtn
