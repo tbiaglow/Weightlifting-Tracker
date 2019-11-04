@@ -63,7 +63,7 @@ class Login extends Component {
             </Jumbotron>
             <form autoComplete="off">
               <Input name="userName" value={this.state.userName} onChange={this.handleInputChange} placeholder="User Name (required)" />
-              <Input name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password (required)" />
+              <Input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password (required)" />
               <FormBtn
                 disabled={!(this.state.userName && this.state.password)}
                 onClick={this.handleFormSubmit}
