@@ -28,37 +28,7 @@ class User_Remove extends Component {
       userData: []
     };
 
-    // Functions to change desired lift
-  //-----------------------------------------------------------------------------------------
-  // handleSquatButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "squat"})
-  //   console.log(this.state.lift)
-  // }
-  // handlePressButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "press"})
-  //   console.log(this.state.lift)
-  // }
-  // handleBenchPressButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "bench press"})
-  //   console.log(this.state.lift)
-  // }
-  // handleDeadliftButton = event => {
-  //   event.preventDefault();
-  //   this.setState({lift: "deadlift"})
-  //   console.log(this.state.lift)
-  // }
-  //-----------------------------------------------------------------------------------------
- 
   handleLiftChange = lift => {
-    // this.setState(
-    //   { lift },
-    //   () => console.log(`Lift selected:`, this.state.lift)
-    // );
-    // event.preventDefault();
-    // this.setState({lift: lift})
     this.setState({lift: lift.value})
     console.log(this.state.lift)
   };
@@ -136,10 +106,6 @@ class User_Remove extends Component {
               <Input name="month" value={this.state.month} onChange={this.handleInputChange} placeholder="Month (required)" />
               <Input name="day" value={this.state.day} onChange={this.handleInputChange} placeholder="Day of the month (required)" />
               <h2>Select Lift: {this.state.lift}</h2>
-              {/* <button name="squatbutton" onClick={this.handleSquatButton}>Squat</button>
-              <button name="pressbutton" onClick={this.handlePressButton}>Press</button>
-              <button name="benchpressbutton" onClick={this.handleBenchPressButton}>Bench Press</button>
-              <button name="deadliftbutton" onClick={this.handleDeadliftButton}>Deadlift</button> */}
               <Select
                 value={lift}
                 onChange={this.handleLiftChange}
@@ -152,6 +118,10 @@ class User_Remove extends Component {
             <button><Link to={"/users/" + this.props.match.params.id}>View History</Link></button>
             <button><Link to={"/users/" + this.props.match.params.id + "/Input"}>Enter New Lift Information</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
+          </Col>
+          <Col size="md-6">
+            <br></br>
+            <div>Enter the date for which you would like to remove data, then select the lift whose data you would like to remove. All volume elements on the date selected will be removed for the chosen lift.</div>
           </Col>
         </Row>
       </Container>

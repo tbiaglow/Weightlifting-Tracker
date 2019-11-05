@@ -75,8 +75,13 @@ class Login extends Component {
             <div>Don't have an account?</div>
             <button><Link to={"/createaccount"}>Create Account</Link></button>
             </Col>
+            <Col size="md-6">
+              <br></br>
+              <div>Weightlifting Tracker is a site that allows users to track their progress in strength sports, including powerlifting, strengthlifting, and Olympic weightlifting. The user can input information about each of their workouts (what exercises they did, sets, repetitions, RPE etc.). The site will calculate the user's 1RM progress over time on their competition lifts (squat, deadlift, press, etc.), as well as their rate of progress (1st derivative with respect to time).</div>
+            </Col>
         </Row>
         </Container>
+
         )
     }
 }

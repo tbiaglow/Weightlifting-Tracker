@@ -84,7 +84,7 @@ class CreateAccount extends Component {
                 <Row>
                     <Col size="md-6">
                         <Jumbotron>
-                            <h1>Please enter a username and password</h1>
+                            <h2>Please enter a username and password</h2>
                         </Jumbotron>
                         <form autoComplete="off">
                         <Input name="userName" value={this.state.userName} onChange={this.handleInputChange} placeholder="User Name (required)" />
@@ -99,6 +99,10 @@ class CreateAccount extends Component {
                         <br></br>
                         <div>Already have an account?</div>
                         <button><Link to={"/"}>Login</Link></button>
+                    </Col>
+                    <Col size="md-6">
+                        <br></br>
+                        <div>Weightlifting Tracker is a site that allows users to track their progress in strength sports, including powerlifting, strengthlifting, and Olympic weightlifting. The user can input information about each of their workouts (what exercises they did, sets, repetitions, RPE etc.). The site will calculate the user's 1RM progress over time on their competition lifts (squat, deadlift, press, etc.), as well as their rate of progress (1st derivative with respect to time).</div>
                     </Col>
                 </Row>
             </Container>

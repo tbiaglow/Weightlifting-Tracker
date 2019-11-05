@@ -79,7 +79,6 @@ class User_Hub extends Component {
                         Clean and Jerk
                       </strong>
                     </Link>
-                    {/* <DeleteBtn /> */}
                   </ListItem>
                 ))}
               </List>
@@ -87,8 +86,13 @@ class User_Hub extends Component {
               <h3>No Results to Display</h3>
             )}
           </Col>
+          <Col size="md-6 sm-12">
+            <br></br>
+            <div>This is your main user page. From here, you can select a lift to view your entire training history for that lift. You can also add or remove a training sesion from this page.</div>
+          </Col>
         </Row>
       </Container>
+
     );
   }
 }

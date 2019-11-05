@@ -195,7 +195,7 @@ class User_Input extends Component {
                 onChange={this.handleRPEChange}
                 options={rpeValues}
               />
-              <text>Note: 1RM data is not calculated for RPE values less than 6.5</text>
+              <br></br>
               <FormBtn
                 disabled={!(this.state.sets && this.state.reps && this.state.weight)}
                 onClick={this.handleFormSubmit}
@@ -204,6 +204,14 @@ class User_Input extends Component {
             <button><Link to={"/users/" + this.props.match.params.id}>View History</Link></button>
             <button><Link to={"/users/" + this.props.match.params.id + "/Remove"}>Remove a Session</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
+          </Col>
+          <Col size="md-6">
+            <br></br>
+            <div>First, enter the date (year, month, and day) of the training session. Choose the lift for which you would like to enter data from the dropdown menu.</div>
+            <br></br>
+            <div>You can create multiple volume elements for the same lift on the same date. Your 1RM value for that date will be determined based on whichever volume element results in the highest calculated 1RM. So, if you perform 2 sets of 5 repetitions at 250 pounds and RPE 8, and another 2 sets of 3 repetitions at 300 pounds and RPE 10, your estimated 1RM would be 326 based the 3 reps, 300 pounds, RPE 10 volume element. Note that this is note intended to be a perfectly accurate estimate of your 1RM value on that day; rather, it is intended as a rough estimate. Information on how 1RM values are calculated can be found here: https://www.powerliftingtowin.com/autoregulation/.</div>
+            <br></br>
+            <div>Note: 1RM data is not calculated for RPE values less than 6.5. The RPE parameter is completely optional. Volume elements without an associated RPE value will be treated as RPE 10 for the purpose of 1RM calculation.</div>
           </Col>
         </Row>
       </Container>
