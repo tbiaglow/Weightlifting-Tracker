@@ -5,10 +5,13 @@ function convertTo1RMBW (array, oneRMArray) {
             oneRMArrayBW[i] = oneRMArray[i] / array[i].BW
         } else {
             var j = i;
-            while (!array[j].BW) {
+            while (array[j].BW === "" && j >= 0) {
+                if (array[j].BW) {
+                    oneRMArrayBW[i] = oneRMArray[i] / array[j].BW
+                }
                 j--;
             }
-            oneRMArrayBW[i] = oneRMArray[i] / array[j].BW
+            
         }
     }
     return oneRMArrayBW;
