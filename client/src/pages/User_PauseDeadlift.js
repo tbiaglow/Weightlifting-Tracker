@@ -7,6 +7,7 @@ import { List, ListItem } from "../components/List";
 import {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer} from 'recharts';
 import {MyWindowPortal} from "../components/MyWindowPortal";
 import convertTo1RM from "../utils/convertTo1RM";
+import convertTo1RMBW from "../utils/convertTo1RMBW";
 import createArray from "../utils/createArray";
 import arrayEqualize from "../utils/arrayEqualize";
 
@@ -17,6 +18,7 @@ class User_PauseDeadlift extends Component {
     pause_deadlift: [],
     //Will hold x and y values for charting
     data: [],
+    data_bw: []
   };
 
   componentDidMount() {
@@ -35,11 +37,17 @@ class User_PauseDeadlift extends Component {
         this.setState({ pause_deadlift: res.data[0].pause_deadlift[0].history });
       }).then(() => {
         var deadliftOneRMArray = convertTo1RM(this.state.deadlift);
+        var deadliftOneRMArrayBW = convertTo1RMBW(this.state.deadlift, deadliftOneRMArray);
         var pauseDeadliftOneRMArray = convertTo1RM(this.state.pause_deadlift);
+        var pauseDeadliftOneRMArrayBW = convertTo1RMBW(this.state.pause_deadlift, pauseDeadliftOneRMArray);
         var deadliftData = createArray(this.state.deadlift, deadliftOneRMArray);
+        var deadliftDataBW = createArray(this.state.deadlift, deadliftOneRMArrayBW);
         var pauseDeadliftData = createArray(this.state.pause_deadlift, pauseDeadliftOneRMArray);
+        var pauseDeadliftDataBW = createArray(this.state.pause_deadlift, pauseDeadliftOneRMArrayBW);
         var dataToGraph = arrayEqualize(deadliftData, pauseDeadliftData);
+        var dataToGraphBW = arrayEqualize(deadliftDataBW, pauseDeadliftDataBW);
         this.setState({data: dataToGraph})
+        this.setState({data_bw: dataToGraphBW})
         console.log(this.state.pause_deadlift);
     })
       .catch(err => console.log(err));
@@ -96,6 +104,26 @@ class User_PauseDeadlift extends Component {
           <ResponsiveContainer width='99%' height={500} >
           <LineChart
             data={this.state.data}
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="0 3" />
+            <XAxis dataKey="x" />
+            <YAxis yAxisId="left" />
+            <YAxis yAxisId="right" orientation="right" />
+            <Tooltip />
+            <Legend />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y1" stroke="blue" activeDot={{ r: 8 }} />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y2" stroke="red" />
+          </LineChart>
+          </ResponsiveContainer>
+          </MyWindowPortal>
+          <MyWindowPortal>
+          <h2>Pause Deadlift Progress Relative to BW (y2, pounds) compared to Deadlift progress Relative to BW (y1, pounds per day)</h2>
+          <ResponsiveContainer width='99%' height={500} >
+          <LineChart
+            data={this.state.data_bw}
             margin={{
               top: 5, right: 30, left: 20, bottom: 5,
             }}

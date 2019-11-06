@@ -7,6 +7,7 @@ import { List, ListItem } from "../components/List";
 import {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer} from 'recharts';
 import {MyWindowPortal} from "../components/MyWindowPortal";
 import convertTo1RM from "../utils/convertTo1RM";
+import convertTo1RMBW from "../utils/convertTo1RMBW";
 import createArray from "../utils/createArray";
 import arrayEqualize from "../utils/arrayEqualize";
 
@@ -17,6 +18,7 @@ class User_TempoSquat extends Component {
     tempo_squat: [],
     //Will hold x and y values for charting
     data: [],
+    data_bw: []
   };
 
   componentDidMount() {
@@ -35,11 +37,17 @@ class User_TempoSquat extends Component {
         this.setState({ tempo_squat: res.data[0].tempo_squat[0].history });
       }).then(() => {
         var squatOneRMArray = convertTo1RM(this.state.squat);
+        var squatOneRMArrayBW = convertTo1RMBW(this.state.squat, squatOneRMArray);
         var tempoSquatOneRMArray = convertTo1RM(this.state.tempo_squat);
+        var tempoSquatOneRMArrayBW = convertTo1RMBW(this.state.tempo_squat, tempoSquatOneRMArray);
         var squatData = createArray(this.state.squat, squatOneRMArray);
+        var squatDataBW = createArray(this.state.squat, squatOneRMArrayBW);
         var tempoSquatData = createArray(this.state.tempo_squat, tempoSquatOneRMArray);
+        var tempoSquatDataBW = createArray(this.state.tempo_squat, tempoSquatOneRMArrayBW);
         var dataToGraph = arrayEqualize(squatData, tempoSquatData);
+        var dataToGraphBW = arrayEqualize(squatDataBW, tempoSquatDataBW);
         this.setState({data: dataToGraph})
+        this.setState({data_bw: dataToGraphBW})
         console.log(this.state.tempo_squat);
     })
       .catch(err => console.log(err));
@@ -96,6 +104,26 @@ class User_TempoSquat extends Component {
           <ResponsiveContainer width='99%' height={500} >
           <LineChart
             data={this.state.data}
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="0 3" />
+            <XAxis dataKey="x" />
+            <YAxis yAxisId="left" />
+            <YAxis yAxisId="right" orientation="right" />
+            <Tooltip />
+            <Legend />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y1" stroke="blue" activeDot={{ r: 8 }} />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y2" stroke="red" />
+          </LineChart>
+          </ResponsiveContainer>
+          </MyWindowPortal>
+          <MyWindowPortal>
+          <h2>Tempo Squat Progress Relative to BW (y2, pounds) compared to Squat progress Relative to BW (y1, pounds per day)</h2>
+          <ResponsiveContainer width='99%' height={500} >
+          <LineChart
+            data={this.state.data_bw}
             margin={{
               top: 5, right: 30, left: 20, bottom: 5,
             }}
