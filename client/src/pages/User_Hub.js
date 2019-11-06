@@ -65,8 +65,7 @@ class User_Hub extends Component {
                         Bench Press
                       </strong>
                     </Link>
-                    <br></br>
-                    <br></br>
+                    <br></br><br></br>
                     <div>Competitive Lifts (Olympic Weightlifting)</div>
                     <Link to={"/users/" + user.id + "/snatch"}>
                       <strong>
@@ -77,6 +76,13 @@ class User_Hub extends Component {
                     <Link to={"/users/" + user.id + "/cleanandjerk"}>
                       <strong>
                         Clean and Jerk
+                      </strong>
+                    </Link>
+                    <br></br><br></br>
+                    <div>Accessory Lifts</div>
+                    <Link to={"/users/" + user.id + "/pausesquat"}>
+                      <strong>
+                        Pause Squat
                       </strong>
                     </Link>
                   </ListItem>

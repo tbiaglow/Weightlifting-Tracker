@@ -12,7 +12,8 @@ const lifts = [
   { value: 'deadlift', label: 'Deadlift' },
   { value: 'bench press', label: 'Bench Press' },
   { value: 'snatch', label: 'Snatch'},
-  { value: 'clean and jerk', label: 'Clean and Jerk' }
+  { value: 'clean and jerk', label: 'Clean and Jerk' },
+  { value: 'pause squat', label: 'Pause Squat'}
 ];
 
 const rpeValues = [
@@ -106,6 +107,10 @@ class User_Input extends Component {
         case "clean and jerk":
           this.placeHistoryItem(res.data[0].clean_and_jerk, newHistoryItem)
           this.sortHistory(res.data[0].clean_and_jerk)
+        break;
+        case "pause squat":
+          this.placeHistoryItem(res.data[0].pause_squat, newHistoryItem)
+          this.sortHistory(res.data[0].pause_squat)
         break;
       }
       

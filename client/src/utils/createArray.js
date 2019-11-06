@@ -4,11 +4,11 @@ function createArray (array, oneRMArray) {
     // Function to create array of objects containing the date and lift weight on that date
   function formArray (array, oneRMArray) {
     var data = []
-    for (var i = 0; i < array.all.length; i++) {
+    for (var i = 0; i < array.length; i++) {
       var d;
-      var monthString = array.all[i].month.toString();
-      var dayString = array.all[i].day.toString();
-      var yearString = array.all[i].year.toString();
+      var monthString = array[i].month.toString();
+      var dayString = array[i].day.toString();
+      var yearString = array[i].year.toString();
       var d = new Date(monthString + "-" + dayString + "-" + yearString);
       var dParsed = Date.parse(d);
 
@@ -87,7 +87,7 @@ function createArray (array, oneRMArray) {
   data = differentiate(data)
   data = createNullPoints(data)
   data = fixDateValues(data)
-    return data
+  return data
 }
 
 export default createArray;

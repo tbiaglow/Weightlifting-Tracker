@@ -8,11 +8,13 @@ import {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, Responsiv
 import {MyWindowPortal} from "../components/MyWindowPortal";
 import convertTo1RM from "../utils/convertTo1RM";
 import createArray from "../utils/createArray";
+import arrayEqualize from "../utils/arrayEqualize";
 
-class User_Squat extends Component {
+class User_PauseSquat extends Component {
   state = {
     //Will hold user's history
-    all: [],
+    squat: [],
+    pause_squat: [],
     //Will hold x and y values for charting
     data: [],
   };
@@ -29,30 +31,20 @@ class User_Squat extends Component {
     API.getUser(this.props.match.params.id)
       .then(res => {
         //Set all to the desired user data
-        this.setState({ all: res.data[0].squat[0].history })
+        this.setState({ squat: res.data[0].squat[0].history });
+        this.setState({ pause_squat: res.data[0].pause_squat[0].history });
       }).then(() => {
-        // var array1 = this.state;
-        var oneRMArray = convertTo1RM(this.state.all);
-        var data = createArray(this.state.all, oneRMArray);
-        this.setState({data: data})
-        console.log(this.state.data)
+        var squatOneRMArray = convertTo1RM(this.state.squat);
+        var pauseSquatOneRMArray = convertTo1RM(this.state.pause_squat);
+        var squatData = createArray(this.state.squat, squatOneRMArray);
+        var pauseSquatData = createArray(this.state.pause_squat, pauseSquatOneRMArray);
+        var dataToGraph = arrayEqualize(squatData, pauseSquatData);
+        this.setState({data: dataToGraph})
+        console.log(this.state.pause_squat);
     })
       .catch(err => console.log(err));
   };
 
-  //NOT WORKING, don't know why
-  //==========================================================================
-  loadRecent = () => {
-      this.setState({ all: [] })
-      API.getUser(this.props.match.params.id)
-        .then(res => {
-            this.setState({ all: res.data[0].squat[0].history.pop() })
-            this.state.all = [this.state.all]
-            console.log(this.state.all.length)
-        })
-        .catch(err => console.log(err));
-  };
-  //===========================================================================
 
   render() {
     return (
@@ -60,20 +52,16 @@ class User_Squat extends Component {
         <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>User Squat History</h1>
+              <h1>User Pause Squat History</h1>
             </Jumbotron>
             <br></br>
             <button onClick={() => this.loadUser()}>Display All</button>
-            {/* NOT WORKING, don't know why */}
-            {/* ========================================================================== */}
-            <button onClick={() => this.loadRecent()}>Display Most Recent</button>
-            {/* ========================================================================== */}
             <button><Link to={"/users/" + this.props.match.params.id}>Back</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
             {/* If the user has data, map it */}
-            {this.state.all.length ? (
+            {this.state.pause_squat.length ? (
                 <List>
-                    {this.state.all.map(i => (
+                    {this.state.pause_squat.map(i => (
                         <div>
                         Year: {i.year}
                         <br></br>
@@ -102,7 +90,7 @@ class User_Squat extends Component {
           </Col>
           <Col size="md-6 sm-12">
           <MyWindowPortal>
-          <h2>Squat Progress (y, pounds) and its First Derivative (yDeriv, pounds per day)</h2>
+          <h2>Pause Squat Progress (pounds) compared to squat progress (pounds per day)</h2>
           <ResponsiveContainer width='99%' height={500} >
           <LineChart
             data={this.state.data}
@@ -116,8 +104,8 @@ class User_Squat extends Component {
             <YAxis yAxisId="right" orientation="right" />
             <Tooltip />
             <Legend />
-            <Line connectNulls yAxisId="left" type="monotone" dataKey="y" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line connectNulls yAxisId="right" type="monotone" dataKey="yDeriv" stroke="#82ca9d" />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="squat" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="pauseSquat" stroke="#82ca9d" />
           </LineChart>
           </ResponsiveContainer>
           </MyWindowPortal>
@@ -128,4 +116,4 @@ class User_Squat extends Component {
   }
 }
 
-export default User_Squat;
+export default User_PauseSquat;

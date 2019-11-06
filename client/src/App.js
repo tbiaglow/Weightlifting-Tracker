@@ -7,6 +7,7 @@ import User_BenchPress from "./pages/User_BenchPress";
 import User_Deadlift from "./pages/User_Deadlift";
 import User_CleanAndJerk from "./pages/User_CleanAndJerk";
 import User_Snatch from "./pages/User_Snatch";
+import User_PauseSquat from "./pages/User_PauseSquat";
 import User_Hub from "./pages/User_Hub";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/users/:id/deadlift" component={User_Deadlift} />
           <Route exact path="/users/:id/cleanandjerk" component={User_CleanAndJerk} />
           <Route exact path="/users/:id/snatch" component={User_Snatch} />
+          <Route exact path="/users/:id/pausesquat" component={User_PauseSquat} />
           <Route exact path="/users/:id/Input" component={User_Input} />
           <Route exact path="/users/:id/Remove" component={User_Remove} />
           <Route exact path="/createaccount" component={CreateAccount} />

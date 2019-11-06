@@ -31,9 +31,9 @@ class User_BenchPress extends Component {
         //Set all to the desired user data
         this.setState({ all: res.data[0].bench_press[0].history })
       }).then(() => {
-        var array1 = this.state;
-        var oneRMArray = convertTo1RM(array1);
-        var data = createArray(array1, oneRMArray);
+        // var array1 = this.state;
+        var oneRMArray = convertTo1RM(this.state.all);
+        var data = createArray(this.state.all, oneRMArray);
         this.setState({data: data})
         console.log(this.state.data)
     })
