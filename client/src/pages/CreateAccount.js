@@ -58,7 +58,12 @@ class CreateAccount extends Component {
                     bench_press: [{history: []}],
                     snatch: [{history: []}],
                     clean_and_jerk: [{history: []}],
-                    pause_squat: [{history: []}]
+                    pause_squat: [{history: []}],
+                    tempo_squat: [{history: []}],
+                    pin_squat: [{history: []}],
+                    rack_pull: [{history: []}],
+                    pause_deadlift: [{history: []}],
+                    pendlay_row: [{history: []}]
                 }).then(() => {
                 //Set state to redirect page
                 this.setState({redirect: true});

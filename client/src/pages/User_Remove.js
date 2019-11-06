@@ -10,7 +10,13 @@ const lifts = [
   { value: 'squat', label: 'Squat' },
   { value: 'press', label: 'Press' },
   { value: 'deadlift', label: 'Deadlift' },
-  { value: 'bench press', label: 'Bench Press' }
+  { value: 'bench press', label: 'Bench Press' },
+  { value: 'pause squat', label: 'Pause Squat'},
+  { value: 'tempo squat', label: 'Tempo Squat'},
+  { value: 'pin squat', label: 'Pin Squat'},
+  { value: 'rack pull', label: 'Rack Pull'},
+  { value: 'pause deadlift', label: 'Pause Deadlift'},
+  { value: 'pendlay row', label: 'Pendlay Row'}
 ];
 
 class User_Remove extends Component {
@@ -76,6 +82,48 @@ class User_Remove extends Component {
         for (var i = 0; i < array1[0].deadlift[0].history.length; i++) {
           if (array1[0].deadlift[0].history[i].year == this.state.year && array1[0].deadlift[0].history[i].month == this.state.month && array1[0].deadlift[0].history[i].day == this.state.day) {
             array1[0].deadlift[0].history.splice(i, 1)
+          }
+        }
+        break;
+        case "pause squat" :
+        for (var i = 0; i < array1[0].pause_squat[0].history.length; i++) {
+          if (array1[0].pause_squat[0].history[i].year == this.state.year && array1[0].pause_squat[0].history[i].month == this.state.month && array1[0].pause_squat[0].history[i].day == this.state.day) {
+            array1[0].pause_squat[0].history.splice(i, 1)
+          }
+        }
+        break;
+        case "tempo squat" :
+        for (var i = 0; i < array1[0].tempo_squat[0].history.length; i++) {
+          if (array1[0].tempo_squat[0].history[i].year == this.state.year && array1[0].tempo_squat[0].history[i].month == this.state.month && array1[0].tempo_squat[0].history[i].day == this.state.day) {
+            array1[0].tempo_squat[0].history.splice(i, 1)
+          }
+        }
+        break;
+        case "pin squat" :
+        for (var i = 0; i < array1[0].pin_squat[0].history.length; i++) {
+          if (array1[0].pin_squat[0].history[i].year == this.state.year && array1[0].pin_squat[0].history[i].month == this.state.month && array1[0].pin_squat[0].history[i].day == this.state.day) {
+            array1[0].pin_squat[0].history.splice(i, 1)
+          }
+        }
+        break;
+        case "rack pull" :
+        for (var i = 0; i < array1[0].rack_pull[0].history.length; i++) {
+          if (array1[0].rack_pull[0].history[i].year == this.state.year && array1[0].rack_pull[0].history[i].month == this.state.month && array1[0].rack_pull[0].history[i].day == this.state.day) {
+            array1[0].rack_pull[0].history.splice(i, 1)
+          }
+        }
+        break;
+        case "pause deadlift" :
+        for (var i = 0; i < array1[0].pause_deadlift[0].history.length; i++) {
+          if (array1[0].pause_deadlift[0].history[i].year == this.state.year && array1[0].pause_deadlift[0].history[i].month == this.state.month && array1[0].pause_deadlift[0].history[i].day == this.state.day) {
+            array1[0].pause_deadlift[0].history.splice(i, 1)
+          }
+        }
+        break;
+        case "pendlay row" :
+        for (var i = 0; i < array1[0].pendlay_row[0].history.length; i++) {
+          if (array1[0].pendlay_row[0].history[i].year == this.state.year && array1[0].pendlay_row[0].history[i].month == this.state.month && array1[0].pendlay_row[0].history[i].day == this.state.day) {
+            array1[0].pendlay_row[0].history.splice(i, 1)
           }
         }
         break;

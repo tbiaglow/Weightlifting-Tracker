@@ -65,7 +65,7 @@ class User_Hub extends Component {
                         Bench Press
                       </strong>
                     </Link>
-                    <br></br><br></br>
+                    {/* <br></br><br></br>
                     <div>Competitive Lifts (Olympic Weightlifting)</div>
                     <Link to={"/users/" + user.id + "/snatch"}>
                       <strong>
@@ -77,12 +77,43 @@ class User_Hub extends Component {
                       <strong>
                         Clean and Jerk
                       </strong>
-                    </Link>
+                    </Link> */}
                     <br></br><br></br>
-                    <div>Accessory Lifts</div>
+                    <div>Squat Accessory Lifts</div>
                     <Link to={"/users/" + user.id + "/pausesquat"}>
                       <strong>
                         Pause Squat
+                      </strong>
+                    </Link>
+                    <br></br>
+                    <Link to={"/users/" + user.id + "/temposquat"}>
+                      <strong>
+                        Tempo Squat
+                      </strong>
+                    </Link>
+                    <br></br>
+                    <Link to={"/users/" + user.id + "/pinsquat"}>
+                      <strong>
+                        Pin Squat
+                      </strong>
+                    </Link>
+                    <br></br><br></br>
+                    <div>Deadlift Accessory Lifts</div>
+                    <Link to={"/users/" + user.id + "/rackpull"}>
+                      <strong>
+                        Rack Pull
+                      </strong>
+                    </Link>
+                    <br></br>
+                    <Link to={"/users/" + user.id + "/pausedeadlift"}>
+                      <strong>
+                        Pause Deadlift
+                      </strong>
+                    </Link>
+                    <br></br>
+                    <Link to={"/users/" + user.id + "/pendlayrow"}>
+                      <strong>
+                        Pendlay Row
                       </strong>
                     </Link>
                   </ListItem>

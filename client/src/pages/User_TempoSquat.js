@@ -10,11 +10,11 @@ import convertTo1RM from "../utils/convertTo1RM";
 import createArray from "../utils/createArray";
 import arrayEqualize from "../utils/arrayEqualize";
 
-class User_PauseSquat extends Component {
+class User_TempoSquat extends Component {
   state = {
     //Will hold user's history
     squat: [],
-    pause_squat: [],
+    tempo_squat: [],
     //Will hold x and y values for charting
     data: [],
   };
@@ -32,15 +32,15 @@ class User_PauseSquat extends Component {
       .then(res => {
         //Set all to the desired user data
         this.setState({ squat: res.data[0].squat[0].history });
-        this.setState({ pause_squat: res.data[0].pause_squat[0].history });
+        this.setState({ tempo_squat: res.data[0].tempo_squat[0].history });
       }).then(() => {
         var squatOneRMArray = convertTo1RM(this.state.squat);
-        var pauseSquatOneRMArray = convertTo1RM(this.state.pause_squat);
+        var tempoSquatOneRMArray = convertTo1RM(this.state.tempo_squat);
         var squatData = createArray(this.state.squat, squatOneRMArray);
-        var pauseSquatData = createArray(this.state.pause_squat, pauseSquatOneRMArray);
-        var dataToGraph = arrayEqualize(squatData, pauseSquatData);
+        var tempoSquatData = createArray(this.state.tempo_squat, tempoSquatOneRMArray);
+        var dataToGraph = arrayEqualize(squatData, tempoSquatData);
         this.setState({data: dataToGraph})
-        console.log(this.state.pause_squat);
+        console.log(this.state.tempo_squat);
     })
       .catch(err => console.log(err));
   };
@@ -52,16 +52,16 @@ class User_PauseSquat extends Component {
         <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>User Pause Squat History</h1>
+              <h1>User Tempo Squat History</h1>
             </Jumbotron>
             <br></br>
             <button onClick={() => this.loadUser()}>Display All</button>
             <button><Link to={"/users/" + this.props.match.params.id}>Back</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
             {/* If the user has data, map it */}
-            {this.state.pause_squat.length ? (
+            {this.state.tempo_squat.length ? (
                 <List>
-                    {this.state.pause_squat.map(i => (
+                    {this.state.tempo_squat.map(i => (
                         <div>
                         Year: {i.year}
                         <br></br>
@@ -90,7 +90,7 @@ class User_PauseSquat extends Component {
           </Col>
           <Col size="md-6 sm-12">
           <MyWindowPortal>
-          <h2>Pause Squat Progress (y2, pounds) compared to Squat progress (y1, pounds per day)</h2>
+          <h2>Tempo Squat Progress (y2, pounds) compared to Squat progress (y1, pounds per day)</h2>
           <ResponsiveContainer width='99%' height={500} >
           <LineChart
             data={this.state.data}
@@ -116,4 +116,4 @@ class User_PauseSquat extends Component {
   }
 }
 
-export default User_PauseSquat;
+export default User_TempoSquat;

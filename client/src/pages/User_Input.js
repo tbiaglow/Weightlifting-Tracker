@@ -11,9 +11,14 @@ const lifts = [
   { value: 'press', label: 'Press' },
   { value: 'deadlift', label: 'Deadlift' },
   { value: 'bench press', label: 'Bench Press' },
-  { value: 'snatch', label: 'Snatch'},
-  { value: 'clean and jerk', label: 'Clean and Jerk' },
-  { value: 'pause squat', label: 'Pause Squat'}
+  // { value: 'snatch', label: 'Snatch'},
+  // { value: 'clean and jerk', label: 'Clean and Jerk' },
+  { value: 'pause squat', label: 'Pause Squat'},
+  { value: 'tempo squat', label: 'Tempo Squat'},
+  { value: 'pin squat', label: 'Pin Squat'},
+  { value: 'rack pull', label: 'Rack Pull'},
+  { value: 'pause deadlift', label: 'Pause Deadlift'},
+  { value: 'pendlay row', label: 'Pendlay Row'}
 ];
 
 const rpeValues = [
@@ -111,6 +116,26 @@ class User_Input extends Component {
         case "pause squat":
           this.placeHistoryItem(res.data[0].pause_squat, newHistoryItem)
           this.sortHistory(res.data[0].pause_squat)
+        break;
+        case "tempo squat":
+          this.placeHistoryItem(res.data[0].tempo_squat, newHistoryItem)
+          this.sortHistory(res.data[0].tempo_squat)
+        break;
+        case "pin squat":
+          this.placeHistoryItem(res.data[0].pin_squat, newHistoryItem)
+          this.sortHistory(res.data[0].pin_squat)
+        break;
+        case "rack pull":
+          this.placeHistoryItem(res.data[0].rack_pull, newHistoryItem)
+          this.sortHistory(res.data[0].rack_pull)
+        break;
+        case "pause deadlift":
+          this.placeHistoryItem(res.data[0].pause_deadlift, newHistoryItem)
+          this.sortHistory(res.data[0].pause_deadlift)
+        break;
+        case "pendlay row":
+          this.placeHistoryItem(res.data[0].pendlay_row, newHistoryItem)
+          this.sortHistory(res.data[0].pendlay_row)
         break;
       }
       

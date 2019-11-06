@@ -8,6 +8,11 @@ import User_Deadlift from "./pages/User_Deadlift";
 import User_CleanAndJerk from "./pages/User_CleanAndJerk";
 import User_Snatch from "./pages/User_Snatch";
 import User_PauseSquat from "./pages/User_PauseSquat";
+import User_TempoSquat from "./pages/User_TempoSquat";
+import User_PinSquat from "./pages/User_PinSquat";
+import User_RackPull from "./pages/User_RackPull";
+import User_PauseDeadlift from "./pages/User_PauseDeadlift";
+import User_PendlayRow from "./pages/User_PendlayRow";
 import User_Hub from "./pages/User_Hub";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -30,6 +35,11 @@ function App() {
           <Route exact path="/users/:id/cleanandjerk" component={User_CleanAndJerk} />
           <Route exact path="/users/:id/snatch" component={User_Snatch} />
           <Route exact path="/users/:id/pausesquat" component={User_PauseSquat} />
+          <Route exact path="/users/:id/temposquat" component={User_TempoSquat} />
+          <Route exact path="/users/:id/pinsquat" component={User_PinSquat} />
+          <Route exact path="/users/:id/rackpull" component={User_RackPull} />
+          <Route exact path="/users/:id/pausedeadlift" component={User_PauseDeadlift} />
+          <Route exact path="/users/:id/pendlayrow" component={User_PendlayRow} />
           <Route exact path="/users/:id/Input" component={User_Input} />
           <Route exact path="/users/:id/Remove" component={User_Remove} />
           <Route exact path="/createaccount" component={CreateAccount} />

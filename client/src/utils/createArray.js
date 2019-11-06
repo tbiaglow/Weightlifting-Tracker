@@ -78,16 +78,16 @@ function createArray (array, oneRMArray) {
       var dMonth = (d.getMonth() + 1).toString();
       var dDay = d.getDate().toString();
       data[i].x = dDay + "/" + dMonth + "/" + dYear;
-      console.log(data[i]);
+      // console.log(data[i]);
     }
     return data
   }
   var data = formArray(array, oneRMArray);
-  data = trimArray(data)
-  data = differentiate(data)
-  data = createNullPoints(data)
-  data = fixDateValues(data)
-  return data
+  data = trimArray(data);
+  data = differentiate(data);
+  data = createNullPoints(data);
+  data = fixDateValues(data);
+  return data;
 }
 
 export default createArray;

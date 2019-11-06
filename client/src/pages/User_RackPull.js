@@ -10,11 +10,11 @@ import convertTo1RM from "../utils/convertTo1RM";
 import createArray from "../utils/createArray";
 import arrayEqualize from "../utils/arrayEqualize";
 
-class User_PauseSquat extends Component {
+class User_RackPull extends Component {
   state = {
     //Will hold user's history
-    squat: [],
-    pause_squat: [],
+    deadlift: [],
+    rack_pull: [],
     //Will hold x and y values for charting
     data: [],
   };
@@ -31,16 +31,22 @@ class User_PauseSquat extends Component {
     API.getUser(this.props.match.params.id)
       .then(res => {
         //Set all to the desired user data
-        this.setState({ squat: res.data[0].squat[0].history });
-        this.setState({ pause_squat: res.data[0].pause_squat[0].history });
+        this.setState({ deadlift: res.data[0].deadlift[0].history });
+        this.setState({ rack_pull: res.data[0].rack_pull[0].history });
+        // console.log(this.state.rack_pull)
       }).then(() => {
-        var squatOneRMArray = convertTo1RM(this.state.squat);
-        var pauseSquatOneRMArray = convertTo1RM(this.state.pause_squat);
-        var squatData = createArray(this.state.squat, squatOneRMArray);
-        var pauseSquatData = createArray(this.state.pause_squat, pauseSquatOneRMArray);
-        var dataToGraph = arrayEqualize(squatData, pauseSquatData);
+        var deadliftOneRMArray = convertTo1RM(this.state.deadlift);
+        var rackPullOneRMArray = convertTo1RM(this.state.rack_pull);
+        // console.log(deadliftOneRMArray);
+        // console.log(rackPullOneRMArray);
+        var deadliftData = createArray(this.state.deadlift, deadliftOneRMArray);
+        var rackPullData = createArray(this.state.rack_pull, rackPullOneRMArray);
+        // console.log(deadliftData);
+        console.log(rackPullData);
+        var dataToGraph = arrayEqualize(deadliftData, rackPullData);
+        console.log(dataToGraph);
         this.setState({data: dataToGraph})
-        console.log(this.state.pause_squat);
+        console.log(this.state.rack_pull);
     })
       .catch(err => console.log(err));
   };
@@ -52,16 +58,16 @@ class User_PauseSquat extends Component {
         <Row>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>User Pause Squat History</h1>
+              <h1>User Rack Pull History</h1>
             </Jumbotron>
             <br></br>
             <button onClick={() => this.loadUser()}>Display All</button>
             <button><Link to={"/users/" + this.props.match.params.id}>Back</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
             {/* If the user has data, map it */}
-            {this.state.pause_squat.length ? (
+            {this.state.rack_pull.length ? (
                 <List>
-                    {this.state.pause_squat.map(i => (
+                    {this.state.rack_pull.map(i => (
                         <div>
                         Year: {i.year}
                         <br></br>
@@ -90,7 +96,7 @@ class User_PauseSquat extends Component {
           </Col>
           <Col size="md-6 sm-12">
           <MyWindowPortal>
-          <h2>Pause Squat Progress (y2, pounds) compared to Squat progress (y1, pounds per day)</h2>
+          <h2>Rack Pull Progress (y2, pounds) compared to Deadlift progress (y1, pounds per day)</h2>
           <ResponsiveContainer width='99%' height={500} >
           <LineChart
             data={this.state.data}
@@ -116,4 +122,4 @@ class User_PauseSquat extends Component {
   }
 }
 
-export default User_PauseSquat;
+export default User_RackPull;

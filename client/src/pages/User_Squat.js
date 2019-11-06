@@ -40,19 +40,6 @@ class User_Squat extends Component {
       .catch(err => console.log(err));
   };
 
-  //NOT WORKING, don't know why
-  //==========================================================================
-  loadRecent = () => {
-      this.setState({ all: [] })
-      API.getUser(this.props.match.params.id)
-        .then(res => {
-            this.setState({ all: res.data[0].squat[0].history.pop() })
-            this.state.all = [this.state.all]
-            console.log(this.state.all.length)
-        })
-        .catch(err => console.log(err));
-  };
-  //===========================================================================
 
   render() {
     return (
@@ -64,10 +51,6 @@ class User_Squat extends Component {
             </Jumbotron>
             <br></br>
             <button onClick={() => this.loadUser()}>Display All</button>
-            {/* NOT WORKING, don't know why */}
-            {/* ========================================================================== */}
-            <button onClick={() => this.loadRecent()}>Display Most Recent</button>
-            {/* ========================================================================== */}
             <button><Link to={"/users/" + this.props.match.params.id}>Back</Link></button>
             <button><Link to={"/"}>Logout</Link></button>
             {/* If the user has data, map it */}
@@ -116,8 +99,8 @@ class User_Squat extends Component {
             <YAxis yAxisId="right" orientation="right" />
             <Tooltip />
             <Legend />
-            <Line connectNulls yAxisId="left" type="monotone" dataKey="y" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line connectNulls yAxisId="right" type="monotone" dataKey="yDeriv" stroke="#82ca9d" />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y" stroke="blue" activeDot={{ r: 8 }} />
+            <Line connectNulls yAxisId="right" type="monotone" dataKey="yDeriv" stroke="green" />
           </LineChart>
           </ResponsiveContainer>
           </MyWindowPortal>
