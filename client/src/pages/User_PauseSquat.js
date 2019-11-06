@@ -44,6 +44,8 @@ class User_PauseSquat extends Component {
         var squatDataBW = createArray(this.state.squat, squatOneRMArrayBW);
         var pauseSquatData = createArray(this.state.pause_squat, pauseSquatOneRMArray);
         var pauseSquatDataBW = createArray(this.state.pause_squat, pauseSquatOneRMArrayBW);
+        console.log(squatData);
+        console.log(pauseSquatData);
         var dataToGraph = arrayEqualize(squatData, pauseSquatData);
         var dataToGraphBW = arrayEqualize(squatDataBW, pauseSquatDataBW);
         this.setState({data: dataToGraph})

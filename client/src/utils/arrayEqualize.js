@@ -1,18 +1,18 @@
 function arrayEqualize (array1, array2) {
     //Check if there are array2 values outside the bound of array1, eliminate them
     var i = 0;
-    while (i < array2.length) {
-        var contained = false;
-        for (var j = 0; j < array1.length; j++) {
-            if (array2[i].x === array1[j].x) {
-                contained = true;
-                i++
-            }
-        }
-        if (contained === false) {
-            array2.splice(i, 1);
-        }
-    }
+    // while (i < array2.length) {
+    //     var contained = false;
+    //     for (var j = 0; j < array1.length; j++) {
+    //         if (array2[i].x === array1[j].x) {
+    //             contained = true;
+    //             i++
+    //         }
+    //     }
+    //     if (contained === false) {
+    //         array2.splice(i, 1);
+    //     }
+    // }
     console.log(array1);
     console.log(array2);
     //Check if there are array1 values outside the bound of array2, if so fill in array2 values until equalized

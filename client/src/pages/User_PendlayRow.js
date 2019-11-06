@@ -44,6 +44,8 @@ class User_PendlayRow extends Component {
         var deadliftDataBW = createArray(this.state.deadlift, deadliftOneRMArrayBW);
         var pendlayRowData = createArray(this.state.pendlay_row, pendlayRowOneRMArray);
         var pendlayRowDataBW = createArray(this.state.pendlay_row, pendlayRowOneRMArrayBW);
+        console.log(deadliftData);
+        console.log(pendlayRowData);
         var dataToGraph = arrayEqualize(deadliftData, pendlayRowData);
         var dataToGraphBW = arrayEqualize(deadliftDataBW, pendlayRowDataBW);
         this.setState({data: dataToGraph})
