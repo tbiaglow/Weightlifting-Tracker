@@ -69,6 +69,8 @@ class User_PendlayRow extends Component {
                         <br></br>
                         Day: {i.day}
                         <br></br>
+                        BW: {i.BW}
+                        <br></br>
                         Volume: {i.sets.map(i2 => (
                             <div>
                                 Sets: {i2.sets}

@@ -39,6 +39,7 @@ class User_Input extends Component {
     reps: "",
     weight: "",
     RPE: "",
+    BW: "",
     userData: []
   };
 
@@ -74,6 +75,7 @@ class User_Input extends Component {
         year: parseInt(this.state.year),
         month: parseInt(this.state.month),
         day: parseInt(this.state.day),
+        BW: parseInt(this.state.BW),
         //Set data following the schema laid out in models folder
         sets: [{
           sets: parseInt(this.state.sets),
@@ -150,7 +152,7 @@ class User_Input extends Component {
       console.log(this.state.userData)
       API.saveUser(this.state.userData)
     })
-    alert("Session Saved!")
+    
   }
 
   //Function to check if the exact year/month/day entered is already present in the dataset
@@ -159,13 +161,18 @@ class User_Input extends Component {
   placeHistoryItem = (lift, newHistoryItem) => {
     var historyItemPushed = false;
     for (var i = 0; i < lift[0].history.length; i++) {
-      if (lift[0].history[i].year === newHistoryItem.year && lift[0].history[i].month === newHistoryItem.month && lift[0].history[i].day === newHistoryItem.day) {
+      if (lift[0].history[i].year === newHistoryItem.year && lift[0].history[i].month === newHistoryItem.month && lift[0].history[i].day === newHistoryItem.day && lift[0].history[i].BW === newHistoryItem.BW) {
         lift[0].history[i].sets.push(newHistoryItem.sets[0])
+        historyItemPushed = true;
+        alert("Session Saved!")
+      } else if (lift[0].history[i].year === newHistoryItem.year && lift[0].history[i].month === newHistoryItem.month && lift[0].history[i].day === newHistoryItem.day && lift[0].history[i].BW !== newHistoryItem.BW) {
+        alert("Bodyweight cannot change in a single day!");
         historyItemPushed = true;
       }
     }
     if (historyItemPushed === false) {
      lift[0].history.push(newHistoryItem)
+     alert("Session Saved!")
     }
   }
 
@@ -219,6 +226,7 @@ class User_Input extends Component {
               <Input name="sets" value={this.state.sets} onChange={this.handleInputChange} placeholder="sets" />
               <Input name="reps" value={this.state.reps} onChange={this.handleInputChange} placeholder="reps" />
               <Input name="weight" value={this.state.weight} onChange={this.handleInputChange} placeholder="weight" />
+              <Input name="BW" value={this.state.BW} onChange={this.handleInputChange} placeholder="bodyweight" />
               <h3>RPE: {this.state.RPE}</h3>
               <Select
                 value={RPE}

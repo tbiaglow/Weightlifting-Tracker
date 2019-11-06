@@ -16,6 +16,7 @@ class User_Hub extends Component {
 
   loadUser = () => {
     console.log(this.props.match.params.id)
+    console.log(this.props.match.params.id)
     //Get the user whose id matches the id in the URL
     API.getUser(this.props.match.params.id)
       .then(res => {

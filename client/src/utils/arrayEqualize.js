@@ -1,4 +1,4 @@
-function arrayEqualize (array1, array2, name1, name2) {
+function arrayEqualize (array1, array2) {
     //Check if there are array2 values outside the bound of array1, eliminate them
     for (var i = 0; i < array2.length; i++) {
         var contained = false;

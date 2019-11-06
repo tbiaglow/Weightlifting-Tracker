@@ -7,6 +7,7 @@ import { List, ListItem } from "../components/List";
 import {LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer} from 'recharts';
 import {MyWindowPortal} from "../components/MyWindowPortal";
 import convertTo1RM from "../utils/convertTo1RM";
+import convertTo1RMBW from "../utils/convertTo1RMBW";
 import createArray from "../utils/createArray";
 
 class User_Deadlift extends Component {
@@ -15,6 +16,8 @@ class User_Deadlift extends Component {
     all: [],
     //Will hold x and y values for charting
     data: [],
+    //Will hold x and y values for charting data adjusted for BW
+    data_bw: []
   };
 
   componentDidMount() {
@@ -33,12 +36,17 @@ class User_Deadlift extends Component {
       }).then(() => {
         // var array1 = this.state;
         var oneRMArray = convertTo1RM(this.state.all);
+        var oneRMArrayBW = convertTo1RMBW(this.state.all, oneRMArray);
+        console.log(oneRMArrayBW);
         var data = createArray(this.state.all, oneRMArray);
+        var data_bw = createArray(this.state.all, oneRMArrayBW);
         this.setState({data: data})
-        console.log(this.state.data)
+        this.setState({data_bw: data_bw})
+        console.log(this.state.data_bw)
     })
       .catch(err => console.log(err));
   };
+
 
   render() {
     return (
@@ -62,6 +70,8 @@ class User_Deadlift extends Component {
                         Month: {i.month}
                         <br></br>
                         Day: {i.day}
+                        <br></br>
+                        BW: {i.BW}
                         <br></br>
                         Volume: {i.sets.map(i2 => (
                             <div>
@@ -88,6 +98,26 @@ class User_Deadlift extends Component {
           <ResponsiveContainer width='99%' height={500} >
           <LineChart
             data={this.state.data}
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="0 3" />
+            <XAxis dataKey="x" />
+            <YAxis yAxisId="left" />
+            <YAxis yAxisId="right" orientation="right" />
+            <Tooltip />
+            <Legend />
+            <Line connectNulls yAxisId="left" type="monotone" dataKey="y" stroke="blue" activeDot={{ r: 8 }} />
+            <Line connectNulls yAxisId="right" type="monotone" dataKey="yDeriv" stroke="green" />
+          </LineChart>
+          </ResponsiveContainer>
+          </MyWindowPortal>
+          <MyWindowPortal>
+          <h2>Deadlift Progress Relative to Bodyweight (y, pounds) and its First Derivative (yDeriv, pounds per day)</h2>
+          <ResponsiveContainer width='99%' height={500} >
+          <LineChart
+            data={this.state.data_bw}
             margin={{
               top: 5, right: 30, left: 20, bottom: 5,
             }}
